@@ -9,6 +9,8 @@ import butterknife.OnClick;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.sample.defininginitialfragment.Fragment2;
+import ch.grze.frogmentexample.sample.defininginitialfragmentwithstate.FragmentCounter;
+import ch.grze.frogmentexample.sample.defininginitialfragmentwithstate.State;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -41,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
     public void onDefiningInitialFragmentClick() {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
         intent.putExtra(FrogmentActivity.FROGMENT_DATA, FrogmentData.forClass(Fragment2.class));
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.defining_initial_fragment_with_state)
+    public void onDefiningInitialFragmentWithStateClick() {
+        final FrogmentData frogmentData = new FrogmentData.Builder(FragmentCounter.class)
+                .state(new State(100))
+                .build();
+
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
+        intent.putExtra(FrogmentActivity.FROGMENT_DATA, frogmentData);
         startActivity(intent);
     }
 

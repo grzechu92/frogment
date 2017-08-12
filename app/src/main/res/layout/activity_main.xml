@@ -33,6 +33,13 @@
         android:text="Defining initial fragment" />
 
     <Button
+        android:id="@+id/defining_initial_fragment_with_state"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Defining initial fragment with state" />
+
+    <Button
         android:id="@+id/keeping_fragment_state"
         android:gravity="center_vertical|center_horizontal"
         android:layout_width="match_parent"
