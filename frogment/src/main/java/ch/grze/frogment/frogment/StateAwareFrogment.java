@@ -16,22 +16,10 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        T state = getDefaultState();
-
-        if (savedInstanceState != null && savedInstanceState.getParcelable(STATE) != null) {
-            try {
-                state = (T) savedInstanceState.getParcelable(STATE);
-            } catch (ClassCastException e) {}
-        } else {
-            if (getArguments() != null && getArguments().getParcelable(STATE) != null) {
-                try {
-                    state = (T) getArguments().getParcelable(STATE);
-                } catch (ClassCastException e) {}
-            }
-        }
+        state = getInitialFragmentState(getArguments(), savedInstanceState);
 
         onStateValidation(state);
-        onStateChange(state);
+        onStateRestored(state);
     }
 
     @Override
@@ -42,7 +30,29 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
     }
 
     public void onStateValidation(T state) {}
-    public void onStateChange(T state) {}
+    public void onStateRestored(T state) {}
 
     abstract public T getDefaultState();
+
+    protected T getInitialFragmentState(Bundle arguments, Bundle savedInstanceState) {
+        final T stateFromArguments = getStateFromBundle(arguments);
+        final T stateFromSavedInstance = getStateFromBundle(savedInstanceState);
+        T state;
+
+        if (savedInstanceState != null) {
+            state = stateFromSavedInstance;
+        } else {
+            state = stateFromArguments;
+        }
+
+        return state == null ? getDefaultState() : state;
+    }
+
+    protected T getStateFromBundle(Bundle bundle) {
+        if (bundle != null && bundle.getParcelable(STATE) != null) {
+            return bundle.getParcelable(STATE);
+        }
+
+        return null;
+    }
 }

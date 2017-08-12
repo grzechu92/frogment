@@ -43,4 +43,10 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(FrogmentActivity.FROGMENT_DATA, FrogmentData.forClass(Fragment2.class));
         startActivity(intent);
     }
+
+    @OnClick(R.id.keeping_fragment_state)
+    public void onKeepingFragmentStateClick() {
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.keepingfragmentstate.Activity.class);
+        startActivity(intent);
+    }
 }

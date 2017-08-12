@@ -20,6 +20,7 @@
         <activity android:name=".sample.fragmentswitchingfromactivity.Activity"/>
         <activity android:name=".sample.fragmentswitchingfromfragment.Activity"/>
         <activity android:name=".sample.defininginitialfragment.Activity"/>
+        <activity android:name=".sample.keepingfragmentstate.Activity"/>
     </application>
 
 </manifest>

@@ -67,6 +67,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
 
         supportFragmentManager.beginTransaction()
                 .replace(frogmentContainerId, frogment, data.getTag())
+                .addToBackStack(data.getTag())
                 .commit();
     }
 
@@ -80,7 +81,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
         }
     }
 
-    protected  FrogmentData getFrogmentDataFromSavedInstance(Bundle savedInstanceState) {
+    protected FrogmentData getFrogmentDataFromSavedInstance(Bundle savedInstanceState) {
         if (savedInstanceState != null && savedInstanceState.getParcelable(FROGMENT_DATA) != null) {
             return savedInstanceState.getParcelable(FROGMENT_DATA);
         }
@@ -97,7 +98,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
     }
 
     protected FrogmentData getInitialFrogment(Intent intent, Bundle savedInstanceState) {
-        FrogmentData frogmentData = null;
+        FrogmentData frogmentData;
 
         final FrogmentData frogmentDataFromIntentExtras = getFrogmentDataFromIntentExtras(intent);
         final FrogmentData frogmentDataFromSavedInstance = getFrogmentDataFromSavedInstance(savedInstanceState);
@@ -105,9 +106,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
         if (frogmentDataFromSavedInstance != null) {
             frogmentData = frogmentDataFromSavedInstance;
         } else {
-            if (frogmentDataFromIntentExtras != null) {
-                frogmentData = frogmentDataFromIntentExtras;
-            }
+            frogmentData = frogmentDataFromIntentExtras;
         }
 
         return frogmentData == null ? getDefaultFrogmentData() : frogmentData;
