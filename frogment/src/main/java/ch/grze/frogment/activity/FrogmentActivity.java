@@ -32,13 +32,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        frogmentData = getFrogmentDataFromIntentExtras(getIntent());
-        frogmentData = getFrogmentDataFromSavedInstance(savedInstanceState);
-
-        if (frogmentData == null) {
-            frogmentData = getDefaultFrogmentData();
-        }
-
+        final FrogmentData frogmentData = getInitialFrogment(getIntent(), savedInstanceState);
         switchFrogment(frogmentData);
     }
 
@@ -100,5 +94,22 @@ public abstract class FrogmentActivity extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    protected FrogmentData getInitialFrogment(Intent intent, Bundle savedInstanceState) {
+        FrogmentData frogmentData = null;
+
+        final FrogmentData frogmentDataFromIntentExtras = getFrogmentDataFromIntentExtras(intent);
+        final FrogmentData frogmentDataFromSavedInstance = getFrogmentDataFromSavedInstance(savedInstanceState);
+
+        if (frogmentDataFromSavedInstance != null) {
+            frogmentData = frogmentDataFromSavedInstance;
+        } else {
+            if (frogmentDataFromIntentExtras != null) {
+                frogmentData = frogmentDataFromIntentExtras;
+            }
+        }
+
+        return frogmentData == null ? getDefaultFrogmentData() : frogmentData;
     }
 }

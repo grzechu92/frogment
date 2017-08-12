@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ch.grze.frogment.activity.FrogmentActivity;
+import ch.grze.frogment.frogment.FrogmentData;
+import ch.grze.frogmentexample.sample.defininginitialfragment.Fragment2;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -31,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.fragment_switching_from_fragment)
     public void onFragmentSwitchingFromFragmentClick() {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.fragmentswitchingfromfragment.Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.defining_initial_fragment)
+    public void onDefiningInitialFragmentClick() {
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
+        intent.putExtra(FrogmentActivity.FROGMENT_DATA, FrogmentData.forClass(Fragment2.class));
         startActivity(intent);
     }
 }

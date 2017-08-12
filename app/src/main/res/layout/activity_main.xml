@@ -24,4 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Fragment switching from fragment" />
+
+    <Button
+        android:id="@+id/defining_initial_fragment"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Defining initial fragment" />
 </LinearLayout>
