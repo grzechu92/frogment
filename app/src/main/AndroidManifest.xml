@@ -18,6 +18,7 @@
 
         <activity android:name=".sample.simpleimplementation.Activity"/>
         <activity android:name=".sample.fragmentswitchingfromactivity.Activity"/>
+        <activity android:name=".sample.fragmentswitchingfromfragment.Activity"/>
     </application>
 
 </manifest>

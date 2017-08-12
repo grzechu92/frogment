@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ch.grze.frogment.activity.FrogmentActivity;
+
 public abstract class Frogment extends Fragment {
     private final int layoutResourceId;
 
@@ -17,5 +19,9 @@ public abstract class Frogment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(layoutResourceId, container, false);
+    }
+
+    protected FrogmentActivity getFrogmentActivity() {
+        return (FrogmentActivity) getActivity();
     }
 }

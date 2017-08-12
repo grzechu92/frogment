@@ -27,4 +27,10 @@ public class MainActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.fragmentswitchingfromactivity.Activity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.fragment_switching_from_fragment)
+    public void onFragmentSwitchingFromFragmentClick() {
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.fragmentswitchingfromfragment.Activity.class);
+        startActivity(intent);
+    }
 }

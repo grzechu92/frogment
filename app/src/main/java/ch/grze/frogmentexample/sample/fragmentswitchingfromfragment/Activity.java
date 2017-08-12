@@ -1,8 +1,9 @@
-package ch.grze.frogmentexample.sample.simpleimplementation;
+package ch.grze.frogmentexample.sample.fragmentswitchingfromfragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import butterknife.ButterKnife;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
@@ -17,10 +18,12 @@ public class Activity extends FrogmentActivity {
         setContentView(R.layout.activity_with_container);
 
         super.onCreate(savedInstanceState);
+
+        ButterKnife.bind(this);
     }
 
     @Override
     protected FrogmentData getDefaultFrogmentData() {
-        return FrogmentData.forClass(Fragment.class);
+        return FrogmentData.forClass(Fragment1.class);
     }
 }
