@@ -8,15 +8,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
-import ch.grze.frogmentexample.sample.defininginitialfragment.Fragment2;
-import ch.grze.frogmentexample.sample.defininginitialfragmentwithstate.FragmentCounter;
-import ch.grze.frogmentexample.sample.defininginitialfragmentwithstate.State;
+import ch.grze.frogmentexample.sample.fragments.FragmentCounter;
+import ch.grze.frogmentexample.sample.fragments.FragmentCounterState;
+import ch.grze.frogmentexample.sample.fragments.FragmentSecond;
 
-public class MainActivity extends AppCompatActivity {
+public class DemoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_demo);
 
         ButterKnife.bind(this);
     }
@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.defining_initial_fragment)
     public void onDefiningInitialFragmentClick() {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
-        intent.putExtra(FrogmentActivity.FROGMENT_DATA, FrogmentData.forClass(Fragment2.class));
+        intent.putExtra(FrogmentActivity.FROGMENT_DATA, FrogmentData.forClass(FragmentSecond.class));
         startActivity(intent);
     }
 
     @OnClick(R.id.defining_initial_fragment_with_state)
     public void onDefiningInitialFragmentWithStateClick() {
         final FrogmentData frogmentData = new FrogmentData.Builder(FragmentCounter.class)
-                .state(new State(100))
+                .state(new FragmentCounterState(100))
                 .build();
 
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);

@@ -1,10 +1,10 @@
-package ch.grze.frogmentexample.sample.simpleimplementation;
+package ch.grze.frogmentexample.sample.fragments;
 
 import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogmentexample.R;
 
-public class Fragment extends Frogment {
-    public Fragment() {
+public class FragmentFirst extends Frogment {
+    public FragmentFirst() {
         super(R.layout.fragment_first);
     }
 }

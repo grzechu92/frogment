@@ -31,7 +31,7 @@ import static org.hamcrest.Matchers.is;
 public class KeepingFragmentStateTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<DemoActivity> mActivityTestRule = new ActivityTestRule<>(DemoActivity.class);
 
     @Test
     public void keepingFragmentStateTest() {
@@ -41,7 +41,7 @@ public class KeepingFragmentStateTest {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                4),
+                                5),
                         isDisplayed()));
         appCompatButton.perform(click());
 
@@ -75,15 +75,25 @@ public class KeepingFragmentStateTest {
                         isDisplayed()));
         appCompatButton3.perform(click());
 
+        ViewInteraction appCompatButton4 = onView(
+                allOf(withId(R.id.increment), withText("+"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        appCompatButton4.perform(click());
+
         ViewInteraction textView2 = onView(
-                allOf(withId(R.id.value), withText("2"),
+                allOf(withId(R.id.value), withText("3"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.fragment_container),
                                         0),
                                 0),
                         isDisplayed()));
-        textView2.check(matches(withText("2")));
+        textView2.check(matches(withText("3")));
 
         ViewInteraction button = onView(
                 allOf(withId(R.id.second_fragment), withText("2"),
@@ -116,14 +126,14 @@ public class KeepingFragmentStateTest {
         button2.perform(click());
 
         ViewInteraction textView4 = onView(
-                allOf(withId(R.id.value), withText("2"),
+                allOf(withId(R.id.value), withText("3"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.fragment_container),
                                         0),
                                 0),
                         isDisplayed()));
-        textView4.check(matches(withText("2")));
+        textView4.check(matches(withText("3")));
 
     }
 

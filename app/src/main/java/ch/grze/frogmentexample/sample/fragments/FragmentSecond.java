@@ -1,10 +1,10 @@
-package ch.grze.frogmentexample.sample.keepingfragmentstate;
+package ch.grze.frogmentexample.sample.fragments;
 
 import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogmentexample.R;
 
-public class Fragment2 extends Frogment {
-    public Fragment2() {
+public class FragmentSecond extends Frogment {
+    public FragmentSecond() {
         super(R.layout.fragment_second);
     }
 }

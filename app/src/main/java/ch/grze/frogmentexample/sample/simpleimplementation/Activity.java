@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
+import ch.grze.frogmentexample.sample.fragments.FragmentFirst;
 
 public class Activity extends FrogmentActivity {
     public Activity() {
@@ -21,6 +22,6 @@ public class Activity extends FrogmentActivity {
 
     @Override
     protected FrogmentData getDefaultFrogmentData() {
-        return FrogmentData.forClass(Fragment.class);
+        return FrogmentData.forClass(FragmentFirst.class);
     }
 }

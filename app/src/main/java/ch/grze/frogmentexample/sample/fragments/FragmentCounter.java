@@ -1,4 +1,4 @@
-package ch.grze.frogmentexample.sample.defininginitialfragmentwithstate;
+package ch.grze.frogmentexample.sample.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +11,7 @@ import butterknife.OnClick;
 import ch.grze.frogment.frogment.StateAwareFrogment;
 import ch.grze.frogmentexample.R;
 
-public class FragmentCounter extends StateAwareFrogment<State> {
+public class FragmentCounter extends StateAwareFrogment<FragmentCounterState> {
     @BindView(R.id.value) protected TextView value;
 
     public FragmentCounter() {
@@ -28,8 +28,8 @@ public class FragmentCounter extends StateAwareFrogment<State> {
     }
 
     @Override
-    public State getDefaultState() {
-        return new State(0);
+    public FragmentCounterState getDefaultState() {
+        return new FragmentCounterState(0);
     }
 
     @OnClick(R.id.increment)

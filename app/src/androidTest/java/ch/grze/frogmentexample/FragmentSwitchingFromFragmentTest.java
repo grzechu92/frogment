@@ -29,7 +29,7 @@ import static org.hamcrest.Matchers.allOf;
 public class FragmentSwitchingFromFragmentTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<DemoActivity> mActivityTestRule = new ActivityTestRule<>(DemoActivity.class);
 
     @Test
     public void fragmentSwitchingFromFragmentTest() {

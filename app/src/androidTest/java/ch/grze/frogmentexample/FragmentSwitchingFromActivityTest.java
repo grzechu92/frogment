@@ -31,7 +31,7 @@ import static org.hamcrest.Matchers.is;
 public class FragmentSwitchingFromActivityTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<DemoActivity> mActivityTestRule = new ActivityTestRule<>(DemoActivity.class);
 
     @Test
     public void fragmentSwitchingFromActivityTest() {

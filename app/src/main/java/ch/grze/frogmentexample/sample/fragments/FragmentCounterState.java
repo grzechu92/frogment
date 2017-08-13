@@ -1,13 +1,13 @@
-package ch.grze.frogmentexample.sample.defininginitialfragmentwithstate;
+package ch.grze.frogmentexample.sample.fragments;
 
 import android.os.Parcel;
 
 import ch.grze.frogment.frogment.FrogmentState;
 
-public class State extends FrogmentState {
+public class FragmentCounterState extends FrogmentState {
     private int value;
 
-    public State(int value) {
+    public FragmentCounterState(int value) {
         this.value = value;
     }
 
@@ -29,19 +29,19 @@ public class State extends FrogmentState {
         dest.writeInt(this.value);
     }
 
-    protected State(Parcel in) {
+    protected FragmentCounterState(Parcel in) {
         this.value = in.readInt();
     }
 
-    public static final Creator<State> CREATOR = new Creator<State>() {
+    public static final Creator<FragmentCounterState> CREATOR = new Creator<FragmentCounterState>() {
         @Override
-        public State createFromParcel(Parcel source) {
-            return new State(source);
+        public FragmentCounterState createFromParcel(Parcel source) {
+            return new FragmentCounterState(source);
         }
 
         @Override
-        public State[] newArray(int size) {
-            return new State[size];
+        public FragmentCounterState[] newArray(int size) {
+            return new FragmentCounterState[size];
         }
     };
 }

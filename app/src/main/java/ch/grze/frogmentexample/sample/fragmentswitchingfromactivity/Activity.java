@@ -8,6 +8,8 @@ import butterknife.OnClick;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
+import ch.grze.frogmentexample.sample.fragments.FragmentFirst;
+import ch.grze.frogmentexample.sample.fragments.FragmentSecond;
 
 public class Activity extends FrogmentActivity {
     public Activity() {
@@ -25,16 +27,16 @@ public class Activity extends FrogmentActivity {
 
     @Override
     protected FrogmentData getDefaultFrogmentData() {
-        return FrogmentData.forClass(Fragment1.class);
+        return FrogmentData.forClass(FragmentFirst.class);
     }
 
     @OnClick(R.id.first_fragment)
     public void onFragment1Click() {
-        switchFrogment(FrogmentData.forClass(Fragment1.class));
+        switchFrogment(FrogmentData.forClass(FragmentFirst.class));
     }
 
     @OnClick(R.id.second_fragment)
     public void onFragment2Click() {
-        switchFrogment(FrogmentData.forClass(Fragment2.class));
+        switchFrogment(FrogmentData.forClass(FragmentSecond.class));
     }
 }

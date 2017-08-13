@@ -1,4 +1,4 @@
-package ch.grze.frogmentexample.sample.fragmentswitchingfromfragment;
+package ch.grze.frogmentexample.sample.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,9 +10,9 @@ import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
 
-public class Fragment2 extends Frogment {
-    public Fragment2() {
-        super(R.layout.fragment_second_with_button);
+public class FragmentFirstWithButton extends Frogment {
+    public FragmentFirstWithButton() {
+        super(R.layout.fragment_first_with_button);
     }
 
     @Override
@@ -24,6 +24,6 @@ public class Fragment2 extends Frogment {
 
     @OnClick(R.id.button)
     public void onButtonClick() {
-        getFrogmentActivity().switchFrogment(FrogmentData.forClass(Fragment1.class));
+        getFrogmentActivity().switchFrogment(FrogmentData.forClass(FragmentSecondWithButton.class));
     }
 }
