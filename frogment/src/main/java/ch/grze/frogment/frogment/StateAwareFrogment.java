@@ -8,10 +8,6 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
 
     protected T state;
 
-    public StateAwareFrogment(int layoutResourceId) {
-        super(layoutResourceId);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
