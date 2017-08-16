@@ -32,7 +32,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final FrogmentData frogmentData = getInitialFrogment(getIntent(), savedInstanceState);
+        final FrogmentData frogmentData = getData(FROGMENT_DATA, getDefaultFrogmentData(), getIntent(), savedInstanceState);
         switchFrogment(frogmentData);
     }
 
@@ -81,34 +81,29 @@ public abstract class FrogmentActivity extends AppCompatActivity {
         }
     }
 
-    protected FrogmentData getFrogmentDataFromSavedInstance(Bundle savedInstanceState) {
-        if (savedInstanceState != null && savedInstanceState.getParcelable(FROGMENT_DATA) != null) {
-            return savedInstanceState.getParcelable(FROGMENT_DATA);
+    protected <T> T getDataFromBundle(String key, Bundle savedInstanceState) {
+        if (savedInstanceState != null && savedInstanceState.getParcelable(key) != null) {
+            return (T) savedInstanceState.getParcelable(key);
         }
 
         return null;
     }
 
-    protected FrogmentData getFrogmentDataFromIntentExtras(Intent intent) {
-        if (intent.getExtras() != null && intent.getExtras().getParcelable(FROGMENT_DATA) != null) {
-            return intent.getExtras().getParcelable(FROGMENT_DATA);
+    protected <T> T getDataFromIntent(String key, Intent intent) {
+        if (intent.getExtras() != null && intent.getExtras().getParcelable(key) != null) {
+            return (T) intent.getExtras().getParcelable(key);
         }
 
         return null;
     }
 
-    protected FrogmentData getInitialFrogment(Intent intent, Bundle savedInstanceState) {
-        FrogmentData frogmentData;
+    protected <T> T getData(String key, T defaultData, Intent intent, Bundle bundle) {
+        T data;
 
-        final FrogmentData frogmentDataFromIntentExtras = getFrogmentDataFromIntentExtras(intent);
-        final FrogmentData frogmentDataFromSavedInstance = getFrogmentDataFromSavedInstance(savedInstanceState);
+        final T dataFromIntent = getDataFromIntent(key, intent);
+        final T dataFromSavedInstance = getDataFromBundle(key, bundle);
 
-        if (frogmentDataFromSavedInstance != null) {
-            frogmentData = frogmentDataFromSavedInstance;
-        } else {
-            frogmentData = frogmentDataFromIntentExtras;
-        }
-
-        return frogmentData == null ? getDefaultFrogmentData() : frogmentData;
+        data = (dataFromSavedInstance != null) ? dataFromSavedInstance : dataFromIntent;
+        return (data == null) ? defaultData : data;
     }
 }

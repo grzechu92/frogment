@@ -45,4 +45,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Keeping fragment state" />
+
+    <Button
+        android:id="@+id/activity_state"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activity state" />
 </LinearLayout>

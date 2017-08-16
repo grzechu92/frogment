@@ -8,4 +8,8 @@ public abstract class Frogment extends Fragment {
     protected FrogmentActivity getFrogmentActivity() {
         return (FrogmentActivity) getActivity();
     }
+
+    protected <T> T getTypedActivity() {
+        return (T) getFrogmentActivity();
+    }
 }
