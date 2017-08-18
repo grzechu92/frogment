@@ -29,6 +29,7 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        onBeforeStateSave(state);
         outState.putParcelable(ACTIVITY_STATE, state);
     }
 

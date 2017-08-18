@@ -24,6 +24,7 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        onBeforeStateSave(state);
         outState.putParcelable(STATE, state);
     }
 
