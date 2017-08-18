@@ -3,7 +3,9 @@ package ch.grze.frogment.frogment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogment {
+import ch.grze.frogment.StateAware;
+
+public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogment implements StateAware<T> {
     public static final String STATE = "state";
 
     protected T state;
@@ -34,11 +36,6 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
         onStateValidation(state);
         onStateChanged(state);
     }
-
-    public void onStateValidation(T state) {}
-    public void onStateChanged(T state) {}
-
-    abstract public T getDefaultState();
 
     protected T getInitialFragmentState(Bundle arguments, Bundle savedInstanceState) {
         T state;

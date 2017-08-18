@@ -52,7 +52,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
             final FrogmentState state;
 
             if (data.getState() == null || !(data.getState() instanceof FrogmentState)) {
-                state = stateAwareFrogment.getDefaultState();
+                state = (FrogmentState) stateAwareFrogment.getDefaultState();
             } else {
                 state = data.getState();
             }

@@ -1,5 +1,5 @@
 package ch.grze.frogment.activity;
 
-import android.os.Parcelable;
+import ch.grze.frogment.State;
 
-public abstract class FrogmentActivityState implements Parcelable {}
+public abstract class FrogmentActivityState implements State {}

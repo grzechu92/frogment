@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 
-public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState> extends FrogmentActivity {
+import ch.grze.frogment.StateAware;
+
+public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState> extends FrogmentActivity implements StateAware<T> {
     public static final String ACTIVITY_STATE = "activity_state";
 
     protected T state;
@@ -36,9 +38,4 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
         onStateValidation(state);
         onStateChanged(state);
     }
-
-    public void onStateValidation(T state) {}
-    public void onStateChanged(T state) {}
-
-    abstract public T getDefaultState();
 }
