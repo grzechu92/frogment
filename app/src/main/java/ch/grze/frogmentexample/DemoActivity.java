@@ -68,4 +68,10 @@ public class DemoActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.activitystate.Activity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.activity_state_provider)
+    public void onActivityStateProviderClick() {
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.activitystateprovider.Activity.class);
+        startActivity(intent);
+    }
 }

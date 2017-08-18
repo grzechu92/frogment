@@ -23,6 +23,7 @@
         <activity android:name=".sample.defininginitialfragmentwithstate.Activity"/>
         <activity android:name=".sample.keepingfragmentstate.Activity"/>
         <activity android:name=".sample.activitystate.Activity"/>
+        <activity android:name=".sample.activitystateprovider.Activity"/>
     </application>
 
 </manifest>
