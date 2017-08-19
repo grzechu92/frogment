@@ -1,5 +1,6 @@
 package ch.grze.frogment.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -22,7 +23,7 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        state = getData(ACTIVITY_STATE, getDefaultState(), getIntent(), savedInstanceState);
+        reloadState(getIntent(), savedInstanceState);
     }
 
     @Override
@@ -54,5 +55,9 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
         this.state = state;
         onStateValidation(state);
         onStateChanged(state);
+    }
+
+    protected void reloadState(Intent intent, Bundle savedInstanceState) {
+        state = getData(ACTIVITY_STATE, getDefaultState(), intent, savedInstanceState);
     }
 }

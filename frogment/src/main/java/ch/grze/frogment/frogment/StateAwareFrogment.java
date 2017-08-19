@@ -14,10 +14,7 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        state = getInitialFragmentState(getArguments(), savedInstanceState);
-
-        onStateValidation(state);
-        onStateChanged(state);
+        reloadState(getArguments(), savedInstanceState);
     }
 
     @Override
@@ -36,6 +33,10 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
         this.state = state;
         onStateValidation(state);
         onStateChanged(state);
+    }
+
+    protected void reloadState(Bundle arguments, Bundle savedInstanceState) {
+        state = getInitialFragmentState(arguments, savedInstanceState);
     }
 
     protected T getInitialFragmentState(Bundle arguments, Bundle savedInstanceState) {
