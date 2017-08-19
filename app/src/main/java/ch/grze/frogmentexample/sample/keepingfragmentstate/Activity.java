@@ -8,8 +8,7 @@ import butterknife.OnClick;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
-import ch.grze.frogmentexample.sample.fragments.FragmentCounter;
-import ch.grze.frogmentexample.sample.fragments.FragmentSecond;
+import ch.grze.frogmentexample.sample.commons.FragmentSecond;
 
 public class Activity extends FrogmentActivity {
     public Activity() {

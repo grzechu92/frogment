@@ -7,7 +7,7 @@ import butterknife.ButterKnife;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
-import ch.grze.frogmentexample.sample.fragments.FragmentFirstWithButton;
+import ch.grze.frogmentexample.sample.commons.FragmentFirstWithButton;
 
 public class Activity extends FrogmentActivity {
     public Activity() {

@@ -1,4 +1,4 @@
-package ch.grze.frogmentexample.sample.fragments;
+package ch.grze.frogmentexample.sample.commons;
 
 import android.os.Parcel;
 

@@ -9,7 +9,6 @@ import butterknife.ButterKnife;
 import ch.grze.frogment.activity.StateAwareFrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
-import ch.grze.frogmentexample.sample.fragments.FragmentCounterWithActivityState;
 
 public class Activity extends StateAwareFrogmentActivity<State> {
     @BindView(R.id.state) protected TextView stateView;

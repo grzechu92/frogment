@@ -8,9 +8,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
-import ch.grze.frogmentexample.sample.fragments.FragmentCounter;
-import ch.grze.frogmentexample.sample.fragments.FragmentCounterState;
-import ch.grze.frogmentexample.sample.fragments.FragmentSecond;
+import ch.grze.frogmentexample.sample.commons.FragmentCounterState;
+import ch.grze.frogmentexample.sample.commons.FragmentSecond;
+import ch.grze.frogmentexample.sample.keepingfragmentstate.FragmentCounter;
 
 public class DemoActivity extends AppCompatActivity {
     @Override

@@ -1,4 +1,4 @@
-package ch.grze.frogmentexample.sample.fragments;
+package ch.grze.frogmentexample.sample.commons;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogmentexample.R;
 
-public class FragmentSecond extends Frogment {
+public class FragmentFirst extends Frogment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.fragment_first, container, false);
     }
 }
