@@ -54,7 +54,6 @@ public class FrogmentData implements Parcelable {
         }
     }
 
-
     @Override
     public int describeContents() {
         return 0;

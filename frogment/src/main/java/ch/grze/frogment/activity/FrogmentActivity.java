@@ -70,6 +70,21 @@ public abstract class FrogmentActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public void switchActivity(FrogmentActivityData data) {
+        final Intent intent = new Intent(this, data.getClazz());
+
+        if (StateAwareFrogmentActivity.class.isAssignableFrom(data.getClazz()) && data.getState() != null) {
+            intent.putExtra(StateAwareFrogmentActivity.ACTIVITY_STATE, data.getState());
+        }
+
+        if (FrogmentActivity.class.isAssignableFrom(data.getClazz()) && data.getFrogmentData() != null) {
+            intent.putExtra(FrogmentActivity.FROGMENT_DATA, data.getFrogmentData());
+        }
+
+        startActivity(intent);
+        finish();
+    }
+
     protected abstract FrogmentData getDefaultFrogmentData();
 
     protected Fragment getFragmentFrom(FrogmentData data) {

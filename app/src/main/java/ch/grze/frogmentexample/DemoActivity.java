@@ -74,4 +74,10 @@ public class DemoActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.activitystateprovider.Activity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.activity_switching)
+    public void onActivitySwitchingClick() {
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.activityswitching.Activity1.class);
+        startActivity(intent);
+    }
 }

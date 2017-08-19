@@ -24,6 +24,8 @@
         <activity android:name=".sample.keepingfragmentstate.Activity"/>
         <activity android:name=".sample.activitystate.Activity"/>
         <activity android:name=".sample.activitystateprovider.Activity"/>
+        <activity android:name=".sample.activityswitching.Activity1"/>
+        <activity android:name=".sample.activityswitching.Activity2"/>
     </application>
 
 </manifest>
