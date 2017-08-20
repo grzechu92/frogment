@@ -11,7 +11,7 @@ import ch.grze.frogment.StateAware;
 import ch.grze.frogment.frogment.FrogmentData;
 
 public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState> extends FrogmentActivity implements StateAware<T> {
-    public static final String ACTIVITY_STATE = "activity_state";
+    public static final String STATE = "state";
 
     protected T state;
 
@@ -31,7 +31,7 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
         super.onSaveInstanceState(outState);
 
         onBeforeStateSave(state);
-        outState.putParcelable(ACTIVITY_STATE, state);
+        outState.putParcelable(STATE, state);
     }
 
     @Override

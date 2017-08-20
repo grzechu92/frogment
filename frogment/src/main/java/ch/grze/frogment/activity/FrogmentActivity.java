@@ -74,7 +74,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, data.getClazz());
 
         if (StateAwareFrogmentActivity.class.isAssignableFrom(data.getClazz()) && data.getState() != null) {
-            intent.putExtra(StateAwareFrogmentActivity.ACTIVITY_STATE, data.getState());
+            intent.putExtra(StateAwareFrogmentActivity.STATE, data.getState());
         }
 
         if (FrogmentActivity.class.isAssignableFrom(data.getClazz()) && data.getFrogmentData() != null) {
