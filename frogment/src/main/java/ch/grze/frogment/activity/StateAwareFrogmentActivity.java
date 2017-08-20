@@ -21,9 +21,9 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         reloadState(getIntent(), savedInstanceState);
+
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -53,11 +53,14 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
 
     final public void setState(T state) {
         this.state = state;
+
         onStateValidation(state);
         onStateChanged(state);
     }
 
     protected void reloadState(Intent intent, Bundle savedInstanceState) {
-        state = getData(ACTIVITY_STATE, getDefaultState(), intent, savedInstanceState);
+        final T state = getData(STATE, getDefaultState(), intent, savedInstanceState);
+
+        setState(state);
     }
 }

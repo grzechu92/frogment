@@ -21,11 +21,9 @@ public class Activity2 extends StateAwareFrogmentActivity<State> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_with_state);
+        ButterKnife.bind(this);
 
         super.onCreate(savedInstanceState);
-
-        ButterKnife.bind(this);
-        updateView();
     }
 
     @Override

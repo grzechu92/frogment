@@ -18,10 +18,9 @@ public class Activity extends FrogmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_fragment_switching_from_activity);
+        ButterKnife.bind(this);
 
         super.onCreate(savedInstanceState);
-
-        ButterKnife.bind(this);
     }
 
     @Override

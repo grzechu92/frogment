@@ -31,12 +31,15 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
 
     final public void setState(T state) {
         this.state = state;
+
         onStateValidation(state);
         onStateChanged(state);
     }
 
     protected void reloadState(Bundle arguments, Bundle savedInstanceState) {
-        state = getInitialFragmentState(arguments, savedInstanceState);
+        final T state = getInitialFragmentState(arguments, savedInstanceState);
+
+        setState(state);
     }
 
     protected T getInitialFragmentState(Bundle arguments, Bundle savedInstanceState) {
