@@ -9,7 +9,7 @@ android {
         targetSdkVersion sdk_version.toInteger()
 
         versionCode 1
-        versionName "1.0.0-alpha6"
+        versionName "1.0.0-alpha7"
     }
 
     dexOptions {
