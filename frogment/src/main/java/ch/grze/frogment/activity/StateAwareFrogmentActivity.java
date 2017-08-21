@@ -21,9 +21,11 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        reloadState(getIntent(), savedInstanceState);
-
         super.onCreate(savedInstanceState);
+
+        if (state == null) {
+            reloadState(getIntent(), savedInstanceState);
+        }
     }
 
     @Override
