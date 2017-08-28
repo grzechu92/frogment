@@ -3,9 +3,7 @@ package ch.grze.frogment.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import ch.grze.frogment.exception.UnableToCreateFrogmentInstanceException;
@@ -17,30 +15,16 @@ import ch.grze.frogment.frogment.StateAwareFrogment;
 public abstract class FrogmentActivity extends AppCompatActivity {
     public static final String FROGMENT_DATA = "frogment_data";
 
-    private final FragmentManager supportFragmentManager;
     private final int frogmentContainerId;
 
     private FrogmentData frogmentData;
 
     public FrogmentActivity(@IdRes int frogmentContainerId) {
         this.frogmentContainerId = frogmentContainerId;
-
-        supportFragmentManager = getSupportFragmentManager();
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        final FrogmentData frogmentData = getData(FROGMENT_DATA, getDefaultFrogmentData(), getIntent(), savedInstanceState);
-        switchFrogment(frogmentData);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putParcelable(FROGMENT_DATA, frogmentData);
+    final public FrogmentData getFrogmentData() {
+        return frogmentData;
     }
 
     public void switchFrogment(FrogmentData data) {
@@ -64,7 +48,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
 
         frogmentData = data;
 
-        supportFragmentManager.beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(frogmentContainerId, fragment, data.getTag())
                 .addToBackStack(data.getTag())
                 .commit();
@@ -88,7 +72,7 @@ public abstract class FrogmentActivity extends AppCompatActivity {
     protected abstract FrogmentData getDefaultFrogmentData();
 
     protected Fragment getFragmentFrom(FrogmentData data) {
-        final Fragment fragmentByTag = supportFragmentManager.findFragmentByTag(data.getTag());
+        final Fragment fragmentByTag = getSupportFragmentManager().findFragmentByTag(data.getTag());
 
         return fragmentByTag != null ? fragmentByTag : getFrogmentInstance(data.getClazz());
     }

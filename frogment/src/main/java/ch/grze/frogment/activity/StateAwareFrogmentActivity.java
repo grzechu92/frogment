@@ -3,7 +3,6 @@ package ch.grze.frogment.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import ch.grze.frogment.ActivityStateProvider;
@@ -17,23 +16,6 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
 
     public StateAwareFrogmentActivity(@IdRes int frogmentContainerId) {
         super(frogmentContainerId);
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (state == null) {
-            reloadState(getIntent(), savedInstanceState);
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        onBeforeStateSave(state);
-        outState.putParcelable(STATE, state);
     }
 
     @Override
