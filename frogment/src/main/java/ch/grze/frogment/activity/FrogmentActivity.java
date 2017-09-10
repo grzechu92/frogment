@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import ch.grze.frogment.backstack.BackStackChangeListener;
@@ -30,6 +29,16 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
     }
 
     @Override @CallSuper
+    public void onFrogmentPushed(Frogment frogment) {
+        onFrogmentConfigure(frogment);
+    }
+
+    @Override @CallSuper
+    public void onFrogmentPopped(Frogment frogment) {
+        onFrogmentConfigure(frogment);
+    }
+
+    @Override @CallSuper
     public void onBackStackEmpty() {
         finish();
     }
@@ -39,28 +48,13 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
     }
 
     public void switchFrogment(FrogmentData data) {
-        final Fragment fragment = getFragmentFrom(data);
+        final Frogment frogment = getFrogmentFrom(data);
+        frogment.setData(data);
 
-        if (fragment instanceof StateAwareFrogment) {
-            final StateAwareFrogment stateAwareFrogment = (StateAwareFrogment) fragment;
-            final FrogmentState state;
-
-            if (data.getState() == null || !(data.getState() instanceof FrogmentState)) {
-                state = (FrogmentState) stateAwareFrogment.getDefaultState();
-            } else {
-                state = data.getState();
-            }
-
-            final Bundle bundle = new Bundle();
-            bundle.putParcelable(StateAwareFrogment.STATE, state);
-
-            fragment.setArguments(bundle);
-        }
-
-        frogmentData = data;
+        onFrogmentConfigure(frogment);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(frogmentContainerId, fragment, data.getTag())
+                .replace(frogmentContainerId, frogment, data.getTag())
                 .addToBackStack(data.getTag())
                 .commit();
     }
@@ -82,10 +76,26 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
 
     protected abstract FrogmentData getDefaultFrogmentData();
 
-    protected Fragment getFragmentFrom(FrogmentData data) {
-        final Fragment fragmentByTag = getSupportFragmentManager().findFragmentByTag(data.getTag());
+    @CallSuper
+    protected void onFrogmentConfigure(Frogment frogment) {
+        final FrogmentData data = frogment.getData();
+        frogmentData = data;
 
-        return fragmentByTag != null ? fragmentByTag : getFrogmentInstance(data.getClazz());
+        if (frogment instanceof StateAwareFrogment) {
+            final StateAwareFrogment stateAwareFrogment = (StateAwareFrogment) frogment;
+            final FrogmentState state;
+
+            if (data.getState() == null || !(data.getState() instanceof FrogmentState)) {
+                state = (FrogmentState) stateAwareFrogment.getDefaultState();
+            } else {
+                state = data.getState();
+            }
+
+            final Bundle bundle = new Bundle();
+            bundle.putParcelable(StateAwareFrogment.STATE, state);
+
+            frogment.setArguments(bundle);
+        }
     }
 
     protected Frogment getFrogmentInstance(Class<? extends Frogment> frogmentClass) {
@@ -120,5 +130,11 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
 
         data = (dataFromSavedInstance != null) ? dataFromSavedInstance : dataFromIntent;
         return (data == null) ? defaultData : data;
+    }
+
+    private Frogment getFrogmentFrom(FrogmentData data) {
+        final Frogment fragmentByTag = (Frogment) getSupportFragmentManager().findFragmentByTag(data.getTag());
+
+        return fragmentByTag != null ? fragmentByTag : getFrogmentInstance(data.getClazz());
     }
 }

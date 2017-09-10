@@ -3,11 +3,10 @@ package ch.grze.frogment.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
 
 import ch.grze.frogment.ActivityStateProvider;
 import ch.grze.frogment.StateAware;
-import ch.grze.frogment.frogment.FrogmentData;
+import ch.grze.frogment.frogment.Frogment;
 
 public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState> extends FrogmentActivity implements StateAware<T> {
     public static final String STATE = "state";
@@ -19,13 +18,11 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
     }
 
     @Override
-    public void switchFrogment(FrogmentData data) {
-        super.switchFrogment(data);
+    protected void onFrogmentConfigure(Frogment frogment) {
+        super.onFrogmentConfigure(frogment);
 
-        final Fragment fragment = getFragmentFrom(data);
-
-        if (fragment instanceof ActivityStateProvider) {
-            final ActivityStateProvider<T> provider = (ActivityStateProvider<T>) fragment;
+        if (frogment instanceof ActivityStateProvider) {
+            final ActivityStateProvider<T> provider = (ActivityStateProvider<T>) frogment;
 
             setState(provider.getFrogmentActivityState());
         }
