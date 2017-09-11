@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import ch.grze.frogment.backstack.BackStackChangeListener;
 import ch.grze.frogment.backstack.BackStackFrogmentManager;
 import ch.grze.frogment.exception.UnableToCreateFrogmentInstanceException;
+import ch.grze.frogment.core.Core;
 import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogment.frogment.FrogmentState;
@@ -21,11 +22,16 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
     private final int frogmentContainerId;
 
     private FrogmentData frogmentData;
+    private Core core;
 
     public FrogmentActivity(@IdRes int frogmentContainerId) {
         this.frogmentContainerId = frogmentContainerId;
 
         backStackFrogmentManager = new BackStackFrogmentManager(getSupportFragmentManager(), this);
+    }
+
+    final public void setCore(Core core) {
+        this.core = core;
     }
 
     @Override @CallSuper

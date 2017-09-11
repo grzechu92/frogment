@@ -19,12 +19,15 @@ public class ActivityCallbacks implements Application.ActivityLifecycleCallbacks
     public void onActivityCreated(Activity activity, Bundle bundle) {
         if (activity instanceof FrogmentActivity) {
             final FrogmentActivity frogmentActivity = (FrogmentActivity) activity;
+            frogmentActivity.setCore(core);
+
             final FrogmentData defaultFrogmentData = frogmentActivity.getDefaultFrogmentData();
             final Intent intent = frogmentActivity.getIntent();
 
             final FrogmentData frogmentData = frogmentActivity.getData(FrogmentActivity.FROGMENT_DATA, defaultFrogmentData, intent, bundle);
             frogmentActivity.switchFrogment(frogmentData);
 
+            frogmentActivity.getSupportFragmentManager().registerFragmentLifecycleCallbacks(core.getFrogmentCallbacks(), true);
             frogmentActivity.getSupportFragmentManager().registerFragmentLifecycleCallbacks(core.getStateAwareFrogmentCallbacks(), true);
         }
     }
