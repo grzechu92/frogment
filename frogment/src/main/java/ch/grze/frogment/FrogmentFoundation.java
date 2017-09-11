@@ -4,10 +4,10 @@ import android.app.Application;
 
 import ch.grze.frogment.core.Core;
 
-public class Frogment {
+public final class FrogmentFoundation {
     private Core core;
 
-    public Frogment(Application application) {
+    public FrogmentFoundation(Application application) {
         core = new Core(application);
     }
 
@@ -15,7 +15,7 @@ public class Frogment {
         return core;
     }
 
-    protected Frogment(Builder builder) {
+    protected FrogmentFoundation(Builder builder) {
         this(builder.application);
     }
 
@@ -26,8 +26,8 @@ public class Frogment {
             this.application = application;
         }
 
-        public Frogment build() {
-            return new Frogment(this);
+        public FrogmentFoundation build() {
+            return new FrogmentFoundation(this);
         }
     }
 }
