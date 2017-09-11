@@ -13,10 +13,10 @@ public class Core {
     private final StateAwareActivityCallbacks stateAwareActivityCallbacks;
     private final StateAwareFrogmentCallbacks stateAwareFrogmentCallbacks;
 
-    private final Application application;
+    private final Config config;
 
-    public Core(Application application) {
-        this.application = application;
+    public Core(Application application, Config config) {
+        this.config = config;
 
         activityCallbacks = new ActivityCallbacks(this);
         stateAwareActivityCallbacks = new StateAwareActivityCallbacks(this);
@@ -26,6 +26,10 @@ public class Core {
 
         application.registerActivityLifecycleCallbacks(getActivityCallbacks());
         application.registerActivityLifecycleCallbacks(getStateAwareActivityCallbacks());
+    }
+
+    public Config getConfig() {
+        return config;
     }
 
     public ActivityCallbacks getActivityCallbacks() {

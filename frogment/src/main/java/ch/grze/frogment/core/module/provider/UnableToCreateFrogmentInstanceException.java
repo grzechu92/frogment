@@ -1,4 +1,4 @@
-package ch.grze.frogment.exception;
+package ch.grze.frogment.core.module.provider;
 
 public class UnableToCreateFrogmentInstanceException extends RuntimeException {
     public UnableToCreateFrogmentInstanceException(Class<?> clazz) {

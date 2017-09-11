@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import ch.grze.frogment.backstack.BackStackChangeListener;
 import ch.grze.frogment.backstack.BackStackFrogmentManager;
-import ch.grze.frogment.exception.UnableToCreateFrogmentInstanceException;
 import ch.grze.frogment.core.Core;
+import ch.grze.frogment.core.module.provider.FragmentInstanceProvider;
 import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogment.frogment.FrogmentState;
@@ -46,7 +46,9 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
 
     @Override @CallSuper
     public void onBackStackEmpty() {
-        finish();
+        if (core.getConfig().isCallActivityFinishOnEmptyBackStack()) {
+            finish();
+        }
     }
 
     final public FrogmentData getFrogmentData() {
@@ -104,14 +106,6 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
         }
     }
 
-    protected Frogment getFrogmentInstance(Class<? extends Frogment> frogmentClass) {
-        try {
-            return frogmentClass.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            throw new UnableToCreateFrogmentInstanceException(frogmentClass);
-        }
-    }
-
     protected <T> T getDataFromBundle(String key, Bundle savedInstanceState) {
         if (savedInstanceState != null && savedInstanceState.getParcelable(key) != null) {
             return (T) savedInstanceState.getParcelable(key);
@@ -140,7 +134,8 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
 
     private Frogment getFrogmentFrom(FrogmentData data) {
         final Frogment fragmentByTag = (Frogment) getSupportFragmentManager().findFragmentByTag(data.getTag());
+        final FragmentInstanceProvider fragmentInstanceProvider = core.getConfig().getFragmentInstanceProvider();
 
-        return fragmentByTag != null ? fragmentByTag : getFrogmentInstance(data.getClazz());
+        return fragmentByTag != null ? fragmentByTag : fragmentInstanceProvider.getInstance(data.getClazz());
     }
 }
