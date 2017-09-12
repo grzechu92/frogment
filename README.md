@@ -10,7 +10,7 @@ Simple Android framework focused on communication between components (`Activity`
 ## Implementation
 
 ```
-compile "com.github.grzechu92:frogment:1.0.0-alpha8"
+compile "com.github.grzechu92:frogment:1.0.0-beta1"
 ```
 
 Library is published in `jitpack.io` repository, if it isn't available in your project, add lines below to matching `build.gradle` file.
@@ -33,12 +33,12 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        new Frogment(this);
+        new FrogmentFoundation(this);
     }
 }
 ```
 
-In near future some configuration possibilities will be added. For now we've got empty builder which will be used to specify behavior of the library.
+If you'd like to change default behavior use configured `Config` object:
 
 ```java
 public class App extends Application {
@@ -46,7 +46,13 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         
-        new Frogment.Builder(this)
+        final Config config = new Config.Builder()
+                .fragmentInstanceProvider(new ReflectionFragmentInstanceProvider()) //any class implementing FragmentInstanceProvider interface
+                .isCallActivityFinishOnEmptyBackStack(true) //boolean
+                .build();
+
+        new FrogmentFoundation.Builder(this)
+                .config(config)
                 .build();
     }
 }
