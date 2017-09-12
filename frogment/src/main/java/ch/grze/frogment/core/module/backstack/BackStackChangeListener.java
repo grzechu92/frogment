@@ -1,4 +1,4 @@
-package ch.grze.frogment.backstack;
+package ch.grze.frogment.core.module.backstack;
 
 import ch.grze.frogment.frogment.Frogment;
 

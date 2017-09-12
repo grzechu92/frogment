@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import ch.grze.frogment.core.Core;
+import ch.grze.frogment.core.module.backstack.BackStackFrogmentManager;
 import ch.grze.frogment.frogment.FrogmentData;
 
 public class ActivityCallbacks implements Application.ActivityLifecycleCallbacks {
@@ -20,6 +21,8 @@ public class ActivityCallbacks implements Application.ActivityLifecycleCallbacks
         if (activity instanceof FrogmentActivity) {
             final FrogmentActivity frogmentActivity = (FrogmentActivity) activity;
             frogmentActivity.setCore(core);
+
+            new BackStackFrogmentManager(frogmentActivity.getSupportFragmentManager(), frogmentActivity);
 
             final FrogmentData defaultFrogmentData = frogmentActivity.getDefaultFrogmentData();
             final Intent intent = frogmentActivity.getIntent();
