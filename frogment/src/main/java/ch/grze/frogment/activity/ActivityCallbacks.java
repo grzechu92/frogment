@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 
 import ch.grze.frogment.core.Core;
 import ch.grze.frogment.core.module.backstack.BackStackFrogmentManager;
@@ -20,18 +21,20 @@ public class ActivityCallbacks implements Application.ActivityLifecycleCallbacks
     public void onActivityCreated(Activity activity, Bundle bundle) {
         if (activity instanceof FrogmentActivity) {
             final FrogmentActivity frogmentActivity = (FrogmentActivity) activity;
+            final FragmentManager fragmentManager = frogmentActivity.getSupportFragmentManager();
+
             frogmentActivity.setCore(core);
 
-            new BackStackFrogmentManager(frogmentActivity.getSupportFragmentManager(), frogmentActivity);
+            new BackStackFrogmentManager(fragmentManager, frogmentActivity);
 
             final FrogmentData defaultFrogmentData = frogmentActivity.getDefaultFrogmentData();
             final Intent intent = frogmentActivity.getIntent();
 
-            final FrogmentData frogmentData = frogmentActivity.getData(FrogmentActivity.FROGMENT_DATA, defaultFrogmentData, intent, bundle);
+            final FrogmentData frogmentData = core.getParser().getData(FrogmentActivity.FROGMENT_DATA, defaultFrogmentData, bundle, intent);
             frogmentActivity.switchFrogment(frogmentData);
 
-            frogmentActivity.getSupportFragmentManager().registerFragmentLifecycleCallbacks(core.getFrogmentCallbacks(), true);
-            frogmentActivity.getSupportFragmentManager().registerFragmentLifecycleCallbacks(core.getStateAwareFrogmentCallbacks(), true);
+            fragmentManager.registerFragmentLifecycleCallbacks(core.getFrogmentCallbacks(), true);
+            fragmentManager.registerFragmentLifecycleCallbacks(core.getStateAwareFrogmentCallbacks(), true);
         }
     }
 

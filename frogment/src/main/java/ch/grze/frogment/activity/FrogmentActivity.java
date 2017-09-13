@@ -30,6 +30,10 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
         this.core = core;
     }
 
+    final public Core getCore() {
+        return core;
+    }
+
     @Override @CallSuper
     public void onFrogmentPushed(Frogment frogment) {
         onFrogmentConfigure(frogment);
@@ -100,32 +104,6 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
 
             frogment.setArguments(bundle);
         }
-    }
-
-    protected <T> T getDataFromBundle(String key, Bundle savedInstanceState) {
-        if (savedInstanceState != null && savedInstanceState.getParcelable(key) != null) {
-            return (T) savedInstanceState.getParcelable(key);
-        }
-
-        return null;
-    }
-
-    protected <T> T getDataFromIntent(String key, Intent intent) {
-        if (intent.getExtras() != null && intent.getExtras().getParcelable(key) != null) {
-            return (T) intent.getExtras().getParcelable(key);
-        }
-
-        return null;
-    }
-
-    protected <T> T getData(String key, T defaultData, Intent intent, Bundle bundle) {
-        T data;
-
-        final T dataFromIntent = getDataFromIntent(key, intent);
-        final T dataFromSavedInstance = getDataFromBundle(key, bundle);
-
-        data = (dataFromSavedInstance != null) ? dataFromSavedInstance : dataFromIntent;
-        return (data == null) ? defaultData : data;
     }
 
     private Frogment getFrogmentFrom(FrogmentData data) {

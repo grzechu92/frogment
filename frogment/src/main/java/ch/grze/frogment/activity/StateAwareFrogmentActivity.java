@@ -40,7 +40,7 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
     }
 
     protected void reloadState(Intent intent, Bundle savedInstanceState) {
-        final T state = getData(STATE, getDefaultState(), intent, savedInstanceState);
+        final T state = getCore().getParser().getData(STATE, getDefaultState(), savedInstanceState, intent);
 
         setState(state);
     }

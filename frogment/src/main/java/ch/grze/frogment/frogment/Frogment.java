@@ -9,15 +9,19 @@ public abstract class Frogment extends Fragment {
     private FrogmentData data;
     private Core core;
 
-    public final void setCore(Core core) {
+    final public void setCore(Core core) {
         this.core = core;
     }
 
-    public final FrogmentData getData() {
+    final public Core getCore() {
+        return core;
+    }
+
+    final public FrogmentData getData() {
         return data;
     }
 
-    public final void setData(FrogmentData data) {
+    final public void setData(FrogmentData data) {
         this.data = data;
     }
 
