@@ -16,8 +16,8 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
     final public void setState(T state) {
         this.state = state;
 
-        onStateValidation(state);
-        onStateChanged(state);
+        onBeforeStateChange(state);
+        onStateChange(state);
     }
 
     protected void reloadState(Bundle arguments, Bundle savedInstanceState) {

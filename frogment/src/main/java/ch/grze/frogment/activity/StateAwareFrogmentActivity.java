@@ -35,8 +35,8 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
     final public void setState(T state) {
         this.state = state;
 
-        onStateValidation(state);
-        onStateChanged(state);
+        onBeforeStateChange(state);
+        onStateChange(state);
     }
 
     protected void reloadState(Intent intent, Bundle savedInstanceState) {

@@ -38,8 +38,8 @@ public class Activity extends StateAwareFrogmentActivity<State> {
     }
 
     @Override
-    public void onStateChanged(State state) {
-        super.onStateChanged(state);
+    public void onStateChange(State state) {
+        super.onStateChange(state);
 
         updateView();
     }
