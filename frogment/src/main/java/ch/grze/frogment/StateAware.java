@@ -7,4 +7,5 @@ public interface StateAware<T extends State> {
     default void onBeforeStateSave(T state) {}
     default void onBeforeStateChange(T state) {}
     default void onStateChange(T state) {}
+    default void onViewStateChange(T state) {}
 }

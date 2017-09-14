@@ -6,10 +6,12 @@ import ch.grze.frogment.core.module.provider.ReflectionFragmentInstanceProvider;
 public class Config {
     private final FragmentInstanceProvider fragmentInstanceProvider;
     private final boolean isCallActivityFinishOnEmptyBackStack;
+    private final boolean isWaitForViewReadyWithStateChange;
 
     private Config(Builder builder) {
         isCallActivityFinishOnEmptyBackStack = builder.isCallActivityFinishOnEmptyBackStack;
         fragmentInstanceProvider = builder.fragmentInstanceProvider;
+        isWaitForViewReadyWithStateChange = builder.isWaitForViewReadyWithStateChange;
     }
 
     public static Config getDefault() {
@@ -20,6 +22,10 @@ public class Config {
         return isCallActivityFinishOnEmptyBackStack;
     }
 
+    public boolean isWaitForViewReadyWithStateChange() {
+        return isWaitForViewReadyWithStateChange;
+    }
+
     public FragmentInstanceProvider getFragmentInstanceProvider() {
         return fragmentInstanceProvider;
     }
@@ -27,8 +33,14 @@ public class Config {
     public static class Builder {
         private FragmentInstanceProvider fragmentInstanceProvider = new ReflectionFragmentInstanceProvider();
         private boolean isCallActivityFinishOnEmptyBackStack = true;
+        private boolean isWaitForViewReadyWithStateChange = true;
 
-        public Builder isCallActivityFinishOnEmptyBackStack(boolean isCallActivityFinishOnEmptyBackStack) {
+        public Builder WaitForViewReadyWithStateChange(boolean isWaitForViewReadyWithStateChange) {
+            this.isWaitForViewReadyWithStateChange = isWaitForViewReadyWithStateChange;
+            return this;
+        }
+
+        public Builder callActivityFinishOnEmptyBackStack(boolean isCallActivityFinishOnEmptyBackStack) {
             this.isCallActivityFinishOnEmptyBackStack = isCallActivityFinishOnEmptyBackStack;
             return this;
         }

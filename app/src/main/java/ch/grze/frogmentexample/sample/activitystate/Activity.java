@@ -19,12 +19,10 @@ public class Activity extends StateAwareFrogmentActivity<State> {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_with_state);
-        ButterKnife.bind(this);
-
         super.onCreate(savedInstanceState);
 
-        updateView();
+        setContentView(R.layout.activity_with_state);
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -38,13 +36,7 @@ public class Activity extends StateAwareFrogmentActivity<State> {
     }
 
     @Override
-    public void onStateChange(State state) {
-        super.onStateChange(state);
-
-        updateView();
-    }
-
-    private void updateView() {
+    public void onViewStateChange(State state) {
         if (!state.isChanged()) {
             stateView.setText("State not changed");
         } else {

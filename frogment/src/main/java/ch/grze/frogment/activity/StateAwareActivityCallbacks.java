@@ -28,7 +28,13 @@ public class StateAwareActivityCallbacks implements Application.ActivityLifecycl
     }
 
     @Override
-    public void onActivityStarted(Activity activity) {}
+    public void onActivityStarted(Activity activity) {
+        if (activity instanceof StateAwareFrogmentActivity) {
+            final StateAwareFrogmentActivity stateAwareFrogmentActivity = (StateAwareFrogmentActivity) activity;
+
+            stateAwareFrogmentActivity.onViewReady();
+        }
+    }
 
     @Override
     public void onActivityResumed(Activity activity) {}

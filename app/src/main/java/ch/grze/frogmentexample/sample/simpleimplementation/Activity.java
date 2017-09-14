@@ -15,9 +15,9 @@ public class Activity extends FrogmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_with_container);
-
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_with_container);
     }
 
     @Override
