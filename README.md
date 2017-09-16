@@ -48,7 +48,7 @@ public class App extends Application {
         
         final Config config = new Config.Builder()
                 .fragmentInstanceProvider(new ReflectionFragmentInstanceProvider()) //any class implementing FragmentInstanceProvider interface
-                .isCallActivityFinishOnEmptyBackStack(true) //boolean
+                .callActivityFinishOnEmptyBackStack(true) //boolean
                 .build();
 
         new FrogmentFoundation.Builder(this)
@@ -90,9 +90,9 @@ public class Activity extends FrogmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    
         setContentView(R.layout.activity_with_container);
-
-        super.onCreate(savedInstanceState); //must be called after setContentView()
     }
 
     @Override
@@ -102,9 +102,7 @@ public class Activity extends FrogmentActivity {
 }
 ```
 
-We need to extend `FrogmentActivity` class that contains necessary boilerplate code. `FrogmentActivity` has constructor where we need to pass container layout ID, in this case `fragment_container`. Notice that `super.onCreate()` method **is called after** `setContentView()` because library magic is called in `onCreate()` activity callback, and views have to be ready at this moment.
-
-Last important thing there is required method `getDefaultFrogmentData` which provides default `FrogmentData` that Activity should render if nothing else is explicitly defined (check `app` sample application for more details)
+We need to extend `FrogmentActivity` class that contains necessary boilerplate code. `FrogmentActivity` has constructor where we need to pass container layout ID, in this case `fragment_container`. Last important thing there is required method `getDefaultFrogmentData` which provides default `FrogmentData` that Activity should render if nothing else is explicitly defined (check `app` sample application for more details)
 
 #### Fragment code:
 
