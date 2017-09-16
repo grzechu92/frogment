@@ -51,7 +51,7 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
         onBeforeStateChange(state);
         onStateChange(state);
 
-        if (shouldCallViewStateChange()) {
+        if (isViewReady) {
             onViewStateChange(state);
         }
     }
@@ -60,9 +60,5 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
         final T state = getCore().getParser().getData(STATE, getDefaultState(), savedInstanceState, intent);
 
         setState(state);
-    }
-
-    private boolean shouldCallViewStateChange() {
-        return isViewReady || !getCore().getConfig().isWaitForViewReadyWithStateChange();
     }
 }

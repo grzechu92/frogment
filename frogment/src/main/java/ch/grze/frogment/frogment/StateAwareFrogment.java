@@ -32,7 +32,7 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
         onBeforeStateChange(state);
         onStateChange(state);
 
-        if (shouldCallViewStateChange()) {
+        if (isViewReady) {
             onViewStateChange(state);
         }
     }
@@ -41,9 +41,5 @@ public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogme
         final T state = getCore().getParser().getData(STATE, getDefaultState(), arguments, savedInstanceState);
 
         setState(state);
-    }
-
-    private boolean shouldCallViewStateChange() {
-        return isViewReady || !getCore().getConfig().isWaitForViewReadyWithStateChange();
     }
 }
