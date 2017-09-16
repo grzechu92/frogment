@@ -25,6 +25,17 @@ public class StateAwareFrogmentCallbacks extends FragmentManager.FragmentLifecyc
     }
 
     @Override
+    public void onFragmentActivityCreated(FragmentManager fm, Fragment f, Bundle savedInstanceState) {
+        super.onFragmentActivityCreated(fm, f, savedInstanceState);
+
+        if (f instanceof StateAwareFrogment) {
+            final StateAwareFrogment stateAwareFrogment = (StateAwareFrogment) f;
+
+            stateAwareFrogment.onViewReady();
+        }
+    }
+
+    @Override
     public void onFragmentSaveInstanceState(FragmentManager fm, Fragment f, Bundle outState) {
         super.onFragmentSaveInstanceState(fm, f, outState);
 

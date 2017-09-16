@@ -32,12 +32,8 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
 
     @Override
     public void onViewReady() {
-        if (shouldCallViewStateChange()) {
-            return;
-        }
-
         isViewReady = true;
-        setState(state);
+        onViewStateChange(state);
     }
 
     @Override

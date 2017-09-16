@@ -27,8 +27,6 @@ public class FragmentCounterWithActivityState extends StateAwareFrogment<Fragmen
         super.onViewCreated(view, savedInstanceState);
 
         ButterKnife.bind(this, view);
-
-        updateView();
     }
 
     @Override
@@ -36,12 +34,17 @@ public class FragmentCounterWithActivityState extends StateAwareFrogment<Fragmen
         return new FragmentCounterState(0);
     }
 
+    @Override
+    public void onViewStateChange(FragmentCounterState state) {
+        value.setText(String.valueOf(state.getValue()));
+    }
+
     @OnClick(R.id.increment)
     public void onIncrementClick() {
         int value = state.getValue();
         state.setValue(++value);
 
-        updateView();
+        onViewStateChange(state);
         updateActivity();
     }
 
@@ -50,7 +53,7 @@ public class FragmentCounterWithActivityState extends StateAwareFrogment<Fragmen
         int value = state.getValue();
         state.setValue(--value);
 
-        updateView();
+        onViewStateChange(state);
         updateActivity();
     }
 
@@ -62,9 +65,5 @@ public class FragmentCounterWithActivityState extends StateAwareFrogment<Fragmen
         state.setCounter(this.state.getValue());
 
         activity.setState(state);
-    }
-
-    private void updateView() {
-        value.setText(String.valueOf(state.getValue()));
     }
 }
