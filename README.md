@@ -10,7 +10,7 @@ Simple Android framework focused on communication between components (`Activity`
 ## Implementation
 
 ```
-compile "com.github.grzechu92:frogment:1.0.0-beta2"
+compile "com.github.grzechu92:frogment:1.0.0"
 ```
 
 Library is published in `jitpack.io` repository, if it isn't available in your project, add lines below to matching `build.gradle` file.
