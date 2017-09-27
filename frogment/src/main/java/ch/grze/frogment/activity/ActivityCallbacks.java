@@ -33,8 +33,9 @@ public class ActivityCallbacks implements Application.ActivityLifecycleCallbacks
             final FrogmentData frogmentData = core.getParser().getData(FrogmentActivity.FROGMENT_DATA, defaultFrogmentData, bundle, intent);
             frogmentActivity.switchFrogment(frogmentData);
 
-            fragmentManager.registerFragmentLifecycleCallbacks(core.getFrogmentCallbacks(), true);
-            fragmentManager.registerFragmentLifecycleCallbacks(core.getStateAwareFrogmentCallbacks(), true);
+            for (FragmentManager.FragmentLifecycleCallbacks callbacks : core.getFragmentLifecycleCallbacks()) {
+                fragmentManager.registerFragmentLifecycleCallbacks(callbacks, true);
+            }
         }
     }
 

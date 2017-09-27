@@ -1,27 +1,29 @@
 package ch.grze.frogment.core;
 
 import android.app.Application;
+import android.support.v4.app.FragmentManager;
 
-import ch.grze.frogment.activity.ActivityCallbacks;
-import ch.grze.frogment.activity.StateAwareActivityCallbacks;
+import java.util.ArrayList;
+import java.util.List;
+
+import ch.grze.frogment.core.extension.AbstractExtension;
 import ch.grze.frogment.core.module.parser.Parser;
-import ch.grze.frogment.frogment.FrogmentCallbacks;
-import ch.grze.frogment.frogment.StateAwareFrogmentCallbacks;
 
 public class Core {
-    private final ActivityCallbacks activityCallbacks = new ActivityCallbacks(this);
-    private final FrogmentCallbacks frogmentCallbacks = new FrogmentCallbacks(this);
-    private final StateAwareActivityCallbacks stateAwareActivityCallbacks = new StateAwareActivityCallbacks(this);
-    private final StateAwareFrogmentCallbacks stateAwareFrogmentCallbacks = new StateAwareFrogmentCallbacks(this);
+    private final List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks = new ArrayList<>();
+    private final List<Application.ActivityLifecycleCallbacks> activityLifecycleCallbacks = new ArrayList<>();
 
     private final Parser parser = new Parser();
     private final Config config;
 
-    public Core(Application application, Config config) {
+    public Core(Application application, Config config, List<AbstractExtension> extensions) {
         this.config = config;
 
-        application.registerActivityLifecycleCallbacks(getActivityCallbacks());
-        application.registerActivityLifecycleCallbacks(getStateAwareActivityCallbacks());
+        initializeExtensions(extensions);
+
+        for (Application.ActivityLifecycleCallbacks callback : getActivityLifecycleCallbacks()) {
+            application.registerActivityLifecycleCallbacks(callback);
+        }
     }
 
     public Config getConfig() {
@@ -32,19 +34,20 @@ public class Core {
         return parser;
     }
 
-    public ActivityCallbacks getActivityCallbacks() {
-        return activityCallbacks;
+    public List<Application.ActivityLifecycleCallbacks> getActivityLifecycleCallbacks() {
+        return activityLifecycleCallbacks;
     }
 
-    public FrogmentCallbacks getFrogmentCallbacks() {
-        return frogmentCallbacks;
+    public List<FragmentManager.FragmentLifecycleCallbacks> getFragmentLifecycleCallbacks() {
+        return fragmentLifecycleCallbacks;
     }
 
-    public StateAwareActivityCallbacks getStateAwareActivityCallbacks() {
-        return stateAwareActivityCallbacks;
-    }
+    private void initializeExtensions(List<AbstractExtension> extensions) {
+        for (AbstractExtension extension : extensions) {
+            extension.initialize(this);
 
-    public StateAwareFrogmentCallbacks getStateAwareFrogmentCallbacks() {
-        return stateAwareFrogmentCallbacks;
+            activityLifecycleCallbacks.addAll(extension.getActivityLifecycleCallbacks());
+            fragmentLifecycleCallbacks.addAll(extension.getFragmentLifecycleCallbacks());
+        }
     }
 }
