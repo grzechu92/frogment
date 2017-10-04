@@ -23,8 +23,6 @@ public class ActivityCallbacks implements Application.ActivityLifecycleCallbacks
             final FrogmentActivity frogmentActivity = (FrogmentActivity) activity;
             final FragmentManager fragmentManager = frogmentActivity.getSupportFragmentManager();
 
-            frogmentActivity.setCore(core);
-
             new BackStackFrogmentManager(fragmentManager, frogmentActivity);
 
             final FrogmentData defaultFrogmentData = frogmentActivity.getDefaultFrogmentData();

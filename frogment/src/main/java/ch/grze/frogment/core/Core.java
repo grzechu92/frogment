@@ -8,9 +8,9 @@ import java.util.List;
 
 import ch.grze.frogment.activity.ActivityCallbacks;
 import ch.grze.frogment.activity.StateAwareActivityCallbacks;
+import ch.grze.frogment.core.callbacks.FragmentCallbacks;
 import ch.grze.frogment.core.extension.AbstractExtension;
 import ch.grze.frogment.core.module.parser.Parser;
-import ch.grze.frogment.frogment.FrogmentCallbacks;
 import ch.grze.frogment.frogment.StateAwareFrogmentCallbacks;
 
 public class Core {
@@ -48,10 +48,12 @@ public class Core {
     }
 
     private void initializeCallbacks() {
+        activityLifecycleCallbacks.add(new ch.grze.frogment.core.callbacks.ActivityCallbacks(this));
+        fragmentLifecycleCallbacks.add(new FragmentCallbacks(this));
+
         activityLifecycleCallbacks.add(new ActivityCallbacks(this));
         activityLifecycleCallbacks.add(new StateAwareActivityCallbacks(this));
 
-        fragmentLifecycleCallbacks.add(new FrogmentCallbacks(this));
         fragmentLifecycleCallbacks.add(new StateAwareFrogmentCallbacks(this));
     }
 

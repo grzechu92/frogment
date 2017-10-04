@@ -7,6 +7,7 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 
 import ch.grze.frogment.core.Core;
+import ch.grze.frogment.core.CoreAware;
 import ch.grze.frogment.core.module.backstack.BackStackChangeListener;
 import ch.grze.frogment.core.module.provider.FragmentInstanceProvider;
 import ch.grze.frogment.frogment.Frogment;
@@ -14,7 +15,7 @@ import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogment.frogment.FrogmentState;
 import ch.grze.frogment.frogment.StateAwareFrogment;
 
-public abstract class FrogmentActivity extends AppCompatActivity implements BackStackChangeListener {
+public abstract class FrogmentActivity extends AppCompatActivity implements BackStackChangeListener, CoreAware {
     public static final String FROGMENT_DATA = "frogment_data";
 
     private final int frogmentContainerId;
@@ -26,10 +27,12 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
         this.frogmentContainerId = frogmentContainerId;
     }
 
+    @Override
     final public void setCore(Core core) {
         this.core = core;
     }
 
+    @Override
     final public Core getCore() {
         return core;
     }

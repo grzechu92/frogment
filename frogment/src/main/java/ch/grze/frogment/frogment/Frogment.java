@@ -4,15 +4,18 @@ import android.support.v4.app.Fragment;
 
 import ch.grze.frogment.activity.FrogmentActivity;
 import ch.grze.frogment.core.Core;
+import ch.grze.frogment.core.CoreAware;
 
-public abstract class Frogment extends Fragment {
+public abstract class Frogment extends Fragment implements CoreAware {
     private FrogmentData data;
     private Core core;
 
+    @Override
     final public void setCore(Core core) {
         this.core = core;
     }
-
+    
+    @Override
     final public Core getCore() {
         return core;
     }
