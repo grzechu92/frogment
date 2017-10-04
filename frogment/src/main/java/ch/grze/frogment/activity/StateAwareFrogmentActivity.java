@@ -2,7 +2,9 @@ package ch.grze.frogment.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
 
 import ch.grze.frogment.ActivityStateProvider;
 import ch.grze.frogment.StateAware;
@@ -19,7 +21,29 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
         super(frogmentContainerId);
     }
 
-    @Override
+    @Override @CallSuper
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        reloadState(getIntent(), savedInstanceState);
+    }
+
+    @Override @CallSuper
+    protected void onStart() {
+        super.onStart();
+
+        onViewReady();
+    }
+
+    @Override @CallSuper
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        onBeforeStateSave(state);
+        outState.putParcelable(StateAwareFrogmentActivity.STATE, state);
+    }
+
+    @Override @CallSuper
     protected void onFrogmentConfigure(Frogment frogment) {
         super.onFrogmentConfigure(frogment);
 
@@ -31,20 +55,22 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
     }
 
     @Override
-    public void onViewReady() {
+    final public void onViewReady() {
         isViewReady = true;
         onViewStateChange(state);
     }
 
     @Override
-    public boolean isViewReady() {
+    final public boolean isViewReady() {
         return isViewReady;
     }
 
+    @Override
     final public T getState() {
         return state;
     }
 
+    @Override
     final public void setState(T state) {
         this.state = state;
 
@@ -56,6 +82,7 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
         }
     }
 
+    @CallSuper
     protected void reloadState(Intent intent, Bundle savedInstanceState) {
         final T state = getCore().getParser().getData(STATE, getDefaultState(), savedInstanceState, intent);
 
