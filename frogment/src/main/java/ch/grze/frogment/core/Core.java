@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.grze.frogment.activity.ActivityCallbacks;
 import ch.grze.frogment.activity.StateAwareActivityCallbacks;
 import ch.grze.frogment.core.callbacks.FragmentCallbacks;
 import ch.grze.frogment.core.extension.AbstractExtension;
@@ -51,7 +50,6 @@ public class Core {
         activityLifecycleCallbacks.add(new ch.grze.frogment.core.callbacks.ActivityCallbacks(this));
         fragmentLifecycleCallbacks.add(new FragmentCallbacks(this));
 
-        activityLifecycleCallbacks.add(new ActivityCallbacks(this));
         activityLifecycleCallbacks.add(new StateAwareActivityCallbacks(this));
 
         fragmentLifecycleCallbacks.add(new StateAwareFrogmentCallbacks(this));

@@ -14,7 +14,7 @@ public abstract class Frogment extends Fragment implements CoreAware {
     final public void setCore(Core core) {
         this.core = core;
     }
-    
+
     @Override
     final public Core getCore() {
         return core;

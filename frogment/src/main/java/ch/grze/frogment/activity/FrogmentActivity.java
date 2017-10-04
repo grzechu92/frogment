@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import ch.grze.frogment.core.Core;
 import ch.grze.frogment.core.CoreAware;
 import ch.grze.frogment.core.module.backstack.BackStackChangeListener;
+import ch.grze.frogment.core.module.backstack.BackStackFrogmentManager;
 import ch.grze.frogment.core.module.provider.FragmentInstanceProvider;
 import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogment.frogment.FrogmentData;
@@ -54,10 +57,34 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
         }
     }
 
+    @Override @CallSuper
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+
+        new BackStackFrogmentManager(fragmentManager, this);
+
+        final FrogmentData frogmentData = core.getParser().getData(FrogmentActivity.FROGMENT_DATA, getDefaultFrogmentData(), savedInstanceState, getIntent());
+        switchFrogment(frogmentData);
+
+        for (FragmentManager.FragmentLifecycleCallbacks callbacks : core.getFragmentLifecycleCallbacks()) {
+            fragmentManager.registerFragmentLifecycleCallbacks(callbacks, true);
+        }
+    }
+
+    @Override @CallSuper
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable(FrogmentActivity.FROGMENT_DATA, getFrogmentData());
+    }
+
     final public FrogmentData getFrogmentData() {
         return frogmentData;
     }
 
+    @CallSuper
     public void switchFrogment(FrogmentData data) {
         final Frogment frogment = getFrogmentFrom(data);
         frogment.setData(data);
@@ -70,6 +97,7 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
                 .commit();
     }
 
+    @CallSuper
     public void switchActivity(FrogmentActivityData data) {
         final Intent intent = new Intent(this, data.getClazz());
 
