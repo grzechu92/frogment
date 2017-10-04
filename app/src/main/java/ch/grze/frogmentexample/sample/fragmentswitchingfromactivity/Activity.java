@@ -12,21 +12,12 @@ import ch.grze.frogmentexample.sample.commons.FragmentFirst;
 import ch.grze.frogmentexample.sample.commons.FragmentSecond;
 
 public class Activity extends FrogmentActivity {
-    public Activity() {
-        super(R.id.fragment_container);
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fragment_switching_from_activity);
         ButterKnife.bind(this);
-    }
-
-    @Override
-    protected FrogmentData getDefaultFrogmentData() {
-        return FrogmentData.forClass(FragmentFirst.class);
     }
 
     @OnClick(R.id.first_fragment)
@@ -37,5 +28,15 @@ public class Activity extends FrogmentActivity {
     @OnClick(R.id.second_fragment)
     public void onFragment2Click() {
         switchFrogment(FrogmentData.forClass(FragmentSecond.class));
+    }
+
+    @Override
+    protected int getFrogmentContainerId() {
+        return R.id.fragment_container;
+    }
+
+    @Override
+    protected FrogmentData getDefaultFrogmentData() {
+        return FrogmentData.forClass(FragmentFirst.class);
     }
 }

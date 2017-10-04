@@ -14,10 +14,6 @@ import ch.grze.frogmentexample.sample.commons.FragmentSecond;
 public class Activity2 extends StateAwareFrogmentActivity<State> {
     @BindView(R.id.state) protected TextView stateView;
 
-    public Activity2() {
-        super(R.id.fragment_container);
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +23,22 @@ public class Activity2 extends StateAwareFrogmentActivity<State> {
     }
 
     @Override
+    public void onViewStateChange(State state) {
+        stateView.setText(state.getText());
+    }
+
+    @Override
     public State getDefaultState() {
         return new State("Activity2 default state");
     }
 
     @Override
-    protected FrogmentData getDefaultFrogmentData() {
-        return FrogmentData.forClass(FragmentSecond.class);
+    protected int getFrogmentContainerId() {
+        return R.id.fragment_container;
     }
 
     @Override
-    public void onViewStateChange(State state) {
-        stateView.setText(state.getText());
+    protected FrogmentData getDefaultFrogmentData() {
+        return FrogmentData.forClass(FragmentSecond.class);
     }
 }

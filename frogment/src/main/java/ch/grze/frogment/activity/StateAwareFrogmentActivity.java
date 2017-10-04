@@ -3,7 +3,6 @@ package ch.grze.frogment.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 
 import ch.grze.frogment.ActivityStateProvider;
@@ -16,10 +15,6 @@ public abstract class StateAwareFrogmentActivity<T extends FrogmentActivityState
 
     protected boolean isViewReady = false;
     protected T state;
-
-    public StateAwareFrogmentActivity(@IdRes int frogmentContainerId) {
-        super(frogmentContainerId);
-    }
 
     @Override @CallSuper
     protected void onCreate(@Nullable Bundle savedInstanceState) {

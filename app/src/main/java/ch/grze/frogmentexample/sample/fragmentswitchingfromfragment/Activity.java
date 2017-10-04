@@ -9,15 +9,16 @@ import ch.grze.frogmentexample.R;
 import ch.grze.frogmentexample.sample.commons.FragmentFirstWithButton;
 
 public class Activity extends FrogmentActivity {
-    public Activity() {
-        super(R.id.fragment_container);
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_with_container);
+    }
+
+    @Override
+    protected int getFrogmentContainerId() {
+        return R.id.fragment_container;
     }
 
     @Override

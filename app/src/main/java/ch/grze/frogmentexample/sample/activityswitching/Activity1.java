@@ -13,10 +13,6 @@ import ch.grze.frogmentexample.R;
 public class Activity1 extends StateAwareFrogmentActivity<State> {
     @BindView(R.id.state) protected TextView stateView;
     
-    public Activity1() {
-        super(R.id.fragment_container);
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +27,17 @@ public class Activity1 extends StateAwareFrogmentActivity<State> {
     }
 
     @Override
-    protected FrogmentData getDefaultFrogmentData() {
-        return FrogmentData.forClass(FragmentFirstWithActivitySwitch.class);
+    public void onViewStateChange(State state) {
+        stateView.setText(state.getText());
     }
 
     @Override
-    public void onViewStateChange(State state) {
-        stateView.setText(state.getText());
+    protected int getFrogmentContainerId() {
+        return R.id.fragment_container;
+    }
+
+    @Override
+    protected FrogmentData getDefaultFrogmentData() {
+        return FrogmentData.forClass(FragmentFirstWithActivitySwitch.class);
     }
 }

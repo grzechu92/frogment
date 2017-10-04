@@ -21,14 +21,8 @@ import ch.grze.frogment.frogment.StateAwareFrogment;
 public abstract class FrogmentActivity extends AppCompatActivity implements BackStackChangeListener, CoreAware {
     public static final String FROGMENT_DATA = "frogment_data";
 
-    private final int frogmentContainerId;
-
     private FrogmentData frogmentData;
     private Core core;
-
-    public FrogmentActivity(@IdRes int frogmentContainerId) {
-        this.frogmentContainerId = frogmentContainerId;
-    }
 
     @Override
     final public void setCore(Core core) {
@@ -92,7 +86,7 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
         onFrogmentConfigure(frogment);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(frogmentContainerId, frogment, data.getTag())
+                .replace(getFrogmentContainerId(), frogment, data.getTag())
                 .addToBackStack(data.getTag())
                 .commit();
     }
@@ -113,6 +107,8 @@ public abstract class FrogmentActivity extends AppCompatActivity implements Back
         finish();
     }
 
+    @IdRes
+    protected abstract int getFrogmentContainerId();
     protected abstract FrogmentData getDefaultFrogmentData();
 
     @CallSuper
