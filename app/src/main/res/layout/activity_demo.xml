@@ -66,4 +66,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Activity switching" />
+
+    <Button
+        android:id="@+id/mvp_simple"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simple MVP" />
 </LinearLayout>

@@ -27,6 +27,7 @@
         <activity android:name=".sample.activitystateprovider.Activity"/>
         <activity android:name=".sample.activityswitching.Activity1"/>
         <activity android:name=".sample.activityswitching.Activity2"/>
+        <activity android:name=".sample.simplemvp.SimpleActivity" />
     </application>
 
 </manifest>
