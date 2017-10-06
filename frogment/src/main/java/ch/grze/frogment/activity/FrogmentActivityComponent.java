@@ -89,12 +89,12 @@ final public class FrogmentActivityComponent {
     public void switchActivity(FrogmentActivityData data) {
         final Intent intent = new Intent(activity, data.getClazz());
 
-        if (AbstractStateAwareFrogmentActivity.class.isAssignableFrom(data.getClazz()) && data.getState() != null) {
-            intent.putExtra(AbstractStateAwareFrogmentActivity.STATE, data.getState());
+        if (StateAwareFrogmentActivityInterface.class.isAssignableFrom(data.getClazz()) && data.getState() != null) {
+            intent.putExtra(StateAwareFrogmentActivityInterface.STATE, data.getState());
         }
 
-        if (AbstractFrogmentActivity.class.isAssignableFrom(data.getClazz()) && data.getFrogmentData() != null) {
-            intent.putExtra(AbstractFrogmentActivity.FROGMENT_DATA, data.getFrogmentData());
+        if (FrogmentActivityInterface.class.isAssignableFrom(data.getClazz()) && data.getFrogmentData() != null) {
+            intent.putExtra(FrogmentActivityInterface.FROGMENT_DATA, data.getFrogmentData());
         }
 
         frogmentActivity.startActivity(intent);
