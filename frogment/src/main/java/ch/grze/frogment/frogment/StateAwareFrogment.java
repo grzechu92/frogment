@@ -5,9 +5,10 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 
 import ch.grze.frogment.StateAware;
+import ch.grze.frogment.StateCallbacksAware;
 import ch.grze.frogment.ViewStateAware;
 
-public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogment implements StateAware<T>, ViewStateAware {
+public abstract class StateAwareFrogment<T extends FrogmentState> extends Frogment implements StateAware<T>, ViewStateAware, StateCallbacksAware<T> {
     public static final String STATE = "state";
 
     protected boolean isViewReady = false;

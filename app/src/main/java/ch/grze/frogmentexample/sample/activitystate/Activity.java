@@ -6,13 +6,13 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ch.grze.frogment.activity.StateAwareFrogmentActivity;
+import ch.grze.frogment.activity.AbstractStateAwareFrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
 
-public class Activity extends StateAwareFrogmentActivity<State> {
+public class Activity extends AbstractStateAwareFrogmentActivity<State> {
     @BindView(R.id.state) protected TextView stateView;
-    
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +36,12 @@ public class Activity extends StateAwareFrogmentActivity<State> {
     }
 
     @Override
-    protected FrogmentData getDefaultFrogmentData() {
+    public FrogmentData getDefaultFrogmentData() {
         return FrogmentData.forClass(FragmentCounterWithActivityState.class);
     }
 
     @Override
-    protected int getFrogmentContainerId() {
+    public int getFrogmentContainerId() {
         return R.id.fragment_container;
     }
 }

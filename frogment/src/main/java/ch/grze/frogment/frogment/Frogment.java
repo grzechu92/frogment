@@ -2,7 +2,7 @@ package ch.grze.frogment.frogment;
 
 import android.support.v4.app.Fragment;
 
-import ch.grze.frogment.activity.FrogmentActivity;
+import ch.grze.frogment.activity.FrogmentActivityInterface;
 import ch.grze.frogment.core.Core;
 import ch.grze.frogment.core.CoreAware;
 
@@ -28,8 +28,8 @@ public abstract class Frogment extends Fragment implements CoreAware {
         this.data = data;
     }
 
-    protected FrogmentActivity getFrogmentActivity() {
-        return (FrogmentActivity) getActivity();
+    protected FrogmentActivityInterface getFrogmentActivity() {
+        return (FrogmentActivityInterface) getActivity();
     }
 
     protected <T> T getTypedActivity() {

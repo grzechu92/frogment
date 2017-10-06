@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.grze.frogment.core.callbacks.ActivityCallbacks;
+import ch.grze.frogment.activity.ActivityCallbacks;
 import ch.grze.frogment.core.callbacks.FragmentCallbacks;
 import ch.grze.frogment.core.extension.AbstractExtension;
 import ch.grze.frogment.core.module.parser.Parser;

@@ -5,13 +5,13 @@ import android.support.annotation.Nullable;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ch.grze.frogment.activity.FrogmentActivity;
+import ch.grze.frogment.activity.AbstractFrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
 import ch.grze.frogmentexample.sample.commons.FragmentFirst;
 import ch.grze.frogmentexample.sample.commons.FragmentSecond;
 
-public class Activity extends FrogmentActivity {
+public class Activity extends AbstractFrogmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +31,12 @@ public class Activity extends FrogmentActivity {
     }
 
     @Override
-    protected int getFrogmentContainerId() {
+    public int getFrogmentContainerId() {
         return R.id.fragment_container;
     }
 
     @Override
-    protected FrogmentData getDefaultFrogmentData() {
+    public FrogmentData getDefaultFrogmentData() {
         return FrogmentData.forClass(FragmentFirst.class);
     }
 }

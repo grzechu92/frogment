@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ch.grze.frogment.activity.FrogmentActivity;
+import ch.grze.frogment.activity.AbstractFrogmentActivity;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.sample.commons.FragmentCounterState;
 import ch.grze.frogmentexample.sample.commons.FragmentSecond;
@@ -42,7 +42,7 @@ public class DemoActivity extends AppCompatActivity {
     @OnClick(R.id.defining_initial_fragment)
     public void onDefiningInitialFragmentClick() {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
-        intent.putExtra(FrogmentActivity.FROGMENT_DATA, FrogmentData.forClass(FragmentSecond.class));
+        intent.putExtra(AbstractFrogmentActivity.FROGMENT_DATA, FrogmentData.forClass(FragmentSecond.class));
         startActivity(intent);
     }
 
@@ -53,7 +53,7 @@ public class DemoActivity extends AppCompatActivity {
                 .build();
 
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
-        intent.putExtra(FrogmentActivity.FROGMENT_DATA, frogmentData);
+        intent.putExtra(AbstractFrogmentActivity.FROGMENT_DATA, frogmentData);
         startActivity(intent);
     }
 

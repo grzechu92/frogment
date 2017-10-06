@@ -1,4 +1,4 @@
 package ch.grze.frogmentmvp.frogment;
 
-public class StateAwareMvpFrogment {
+public abstract class StateAwareMvpFrogment {
 }
