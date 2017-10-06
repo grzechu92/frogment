@@ -4,7 +4,15 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import ch.grze.frogment.core.Core;
+
 public abstract class AbstractActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
+    protected final Core core;
+
+    public AbstractActivityLifecycleCallbacks(Core core) {
+        this.core = core;
+    }
+
     @Override
     public void onActivityCreated(Activity activity, Bundle bundle) {}
 
@@ -25,4 +33,8 @@ public abstract class AbstractActivityLifecycleCallbacks implements Application.
 
     @Override
     public void onActivityDestroyed(Activity activity) {}
+
+    protected <T> T getTypedActivity(Activity activity) throws ClassCastException {
+        return (T) activity;
+    }
 }
