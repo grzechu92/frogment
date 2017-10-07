@@ -4,11 +4,12 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 
 import ch.grze.frogment.ActivityInterface;
+import ch.grze.frogment.SwitchAware;
 import ch.grze.frogment.core.backstack.BackStackChangeListener;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogment.frogment.FrogmentInterface;
 
-public interface FrogmentActivityInterface extends ActivityInterface, BackStackChangeListener {
+public interface FrogmentActivityInterface extends ActivityInterface, BackStackChangeListener, SwitchAware {
     String FROGMENT_DATA = "frogment_data";
 
     FrogmentActivityComponent getFrogmentActivityComponent();
@@ -33,12 +34,12 @@ public interface FrogmentActivityInterface extends ActivityInterface, BackStackC
         getFrogmentActivityComponent().onBackStackEmpty();
     }
 
-    @CallSuper
+    @Override @CallSuper
     default void switchFrogment(FrogmentData data) {
         getFrogmentActivityComponent().switchFrogment(data);
     }
 
-    @CallSuper
+    @Override @CallSuper
     default void switchActivity(FrogmentActivityData data) {
         getFrogmentActivityComponent().switchActivity(data);
     }
