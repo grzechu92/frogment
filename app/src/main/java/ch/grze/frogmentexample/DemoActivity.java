@@ -83,7 +83,7 @@ public class DemoActivity extends AppCompatActivity {
 
     @OnClick(R.id.mvp_simple)
     public void onMvpSimpleClick() {
-        final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.simplemvp.SimpleActivity.class);
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.mvpsample.simplemvp.SimpleActivity.class);
         startActivity(intent);
     }
 }

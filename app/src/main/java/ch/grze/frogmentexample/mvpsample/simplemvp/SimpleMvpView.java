@@ -1,4 +1,4 @@
-package ch.grze.frogmentexample.sample.simplemvp;
+package ch.grze.frogmentexample.mvpsample.simplemvp;
 
 import ch.grze.frogmentmvp.MvpView;
 
