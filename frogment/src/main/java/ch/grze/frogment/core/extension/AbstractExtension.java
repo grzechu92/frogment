@@ -8,10 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.grze.frogment.core.Core;
+import ch.grze.frogment.core.component.AbstractActivityComponentInjector;
+import ch.grze.frogment.core.component.AbstractFragmentComponentInjector;
 
 public abstract class AbstractExtension {
-    protected final List<Application.ActivityLifecycleCallbacks> activityLifecycleCallbacks = new ArrayList<>();
-    protected final List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks = new ArrayList<>();
+    private final List<Application.ActivityLifecycleCallbacks> activityLifecycleCallbacks = new ArrayList<>();
+    private final List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks = new ArrayList<>();
+    private final List<AbstractActivityComponentInjector> activityComponentInjectors = new ArrayList<>();
+    private final List<AbstractFragmentComponentInjector> fragmentComponentInjectors = new ArrayList<>();
     protected Core core;
 
     @CallSuper
@@ -27,11 +31,27 @@ public abstract class AbstractExtension {
         return fragmentLifecycleCallbacks;
     }
 
-    protected void addActivityLifecycleCallback(Application.ActivityLifecycleCallbacks callback) {
+    final public List<AbstractActivityComponentInjector> getActivityComponentInjectors() {
+        return activityComponentInjectors;
+    }
+
+    final public List<AbstractFragmentComponentInjector> getFragmentComponentInjectors() {
+        return fragmentComponentInjectors;
+    }
+
+    final protected void addActivityLifecycleCallback(Application.ActivityLifecycleCallbacks callback) {
         activityLifecycleCallbacks.add(callback);
     }
 
-    protected void addFragmentLifecycleCallback(FragmentManager.FragmentLifecycleCallbacks callback) {
+    final protected void addFragmentLifecycleCallback(FragmentManager.FragmentLifecycleCallbacks callback) {
         fragmentLifecycleCallbacks.add(callback);
+    }
+
+    final protected void addActivityComponentInjector(AbstractActivityComponentInjector injector) {
+        activityComponentInjectors.add(injector);
+    }
+
+    final protected void addFragmentComponentInjector(AbstractFragmentComponentInjector injector) {
+        fragmentComponentInjectors.add(injector);
     }
 }

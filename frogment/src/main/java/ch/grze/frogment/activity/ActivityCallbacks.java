@@ -17,20 +17,12 @@ public class ActivityCallbacks extends AbstractActivityLifecycleCallbacks {
 
         try {
             final FrogmentActivityInterface frogmentActivity = getTypedActivity(activity);
-
-            final FrogmentActivityComponent component = new FrogmentActivityComponent(core, frogmentActivity);
-            frogmentActivity.setFrogmentActivityComponent(component);
-
-            component.onActivityCreated(bundle);
+            frogmentActivity.getFrogmentActivityComponent().onActivityCreated(bundle);
         } catch (ClassCastException ignored) {}
 
         try {
             final StateAwareFrogmentActivityInterface stateAwareFrogmentActivity = getTypedActivity(activity);
-
-            final StateAwareFrogmentActivityComponent component = new StateAwareFrogmentActivityComponent(core, stateAwareFrogmentActivity);
-            stateAwareFrogmentActivity.setStateAwareFrogmentActivityComponent(component);
-
-            component.onActivityCreated(bundle);
+            stateAwareFrogmentActivity.getStateAwareFrogmentActivityComponent().onActivityCreated(bundle);
         } catch (ClassCastException ignored) {}
     }
 
@@ -40,7 +32,6 @@ public class ActivityCallbacks extends AbstractActivityLifecycleCallbacks {
 
         try {
             final StateAwareFrogmentActivityInterface stateAwareFrogmentActivity = getTypedActivity(activity);
-
             stateAwareFrogmentActivity.getStateAwareFrogmentActivityComponent().onActivityStarted();
         } catch (ClassCastException ignored) {}
     }
@@ -51,13 +42,11 @@ public class ActivityCallbacks extends AbstractActivityLifecycleCallbacks {
 
         try {
             final FrogmentActivityInterface frogmentActivity = getTypedActivity(activity);
-
             frogmentActivity.getFrogmentActivityComponent().onActivitySaveInstanceState(bundle);
         } catch (ClassCastException ignored) {}
 
         try {
             final StateAwareFrogmentActivityInterface stateAwareFrogmentActivity = getTypedActivity(activity);
-
             stateAwareFrogmentActivity.getStateAwareFrogmentActivityComponent().onActivitySaveInstanceState(bundle);
         } catch (ClassCastException ignored) {}
     }
