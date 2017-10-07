@@ -4,7 +4,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 
 import ch.grze.frogment.ActivityInterface;
-import ch.grze.frogment.core.module.backstack.BackStackChangeListener;
+import ch.grze.frogment.core.backstack.BackStackChangeListener;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogment.frogment.FrogmentInterface;
 

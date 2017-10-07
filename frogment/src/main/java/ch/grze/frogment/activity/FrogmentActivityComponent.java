@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentManager;
 
 import ch.grze.frogment.State;
 import ch.grze.frogment.core.Core;
-import ch.grze.frogment.core.module.backstack.BackStackFrogmentManager;
-import ch.grze.frogment.core.module.provider.FragmentInstanceProvider;
+import ch.grze.frogment.core.backstack.BackStackFrogmentManager;
+import ch.grze.frogment.core.provider.FragmentInstanceProvider;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogment.frogment.FrogmentInterface;
 import ch.grze.frogment.frogment.StateAwareFrogmentInterface;

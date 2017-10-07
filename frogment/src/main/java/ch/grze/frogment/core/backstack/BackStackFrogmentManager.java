@@ -1,4 +1,4 @@
-package ch.grze.frogment.core.module.backstack;
+package ch.grze.frogment.core.backstack;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

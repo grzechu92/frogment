@@ -14,7 +14,7 @@ import ch.grze.frogment.core.callbacks.ActivityComponentInjectorCallbacks;
 import ch.grze.frogment.core.component.AbstractActivityComponentInjector;
 import ch.grze.frogment.core.component.AbstractFragmentComponentInjector;
 import ch.grze.frogment.core.extension.AbstractExtension;
-import ch.grze.frogment.core.module.parser.Parser;
+import ch.grze.frogment.core.parser.Parser;
 import ch.grze.frogment.frogment.FragmentCallbacks;
 import ch.grze.frogment.frogment.FrogmentComponentInjector;
 

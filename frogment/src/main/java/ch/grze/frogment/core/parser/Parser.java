@@ -1,4 +1,4 @@
-package ch.grze.frogment.core.module.parser;
+package ch.grze.frogment.core.parser;
 
 import android.content.Intent;
 import android.os.Bundle;

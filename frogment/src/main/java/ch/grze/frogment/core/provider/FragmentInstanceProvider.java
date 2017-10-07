@@ -1,4 +1,4 @@
-package ch.grze.frogment.core.module.provider;
+package ch.grze.frogment.core.provider;
 
 import ch.grze.frogment.frogment.FrogmentInterface;
 

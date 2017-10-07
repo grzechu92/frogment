@@ -1,7 +1,7 @@
 package ch.grze.frogment.core;
 
-import ch.grze.frogment.core.module.provider.FragmentInstanceProvider;
-import ch.grze.frogment.core.module.provider.ReflectionFragmentInstanceProvider;
+import ch.grze.frogment.core.provider.FragmentInstanceProvider;
+import ch.grze.frogment.core.provider.ReflectionFragmentInstanceProvider;
 
 public class Config {
     private final FragmentInstanceProvider fragmentInstanceProvider;
