@@ -8,9 +8,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.grze.frogmentexample.R;
-import ch.grze.frogmentmvp.activity.MvpActivity;
+import ch.grze.frogmentmvp.activity.AbstractMvpActivity;
 
-public class SimpleActivity extends MvpActivity<SimpleMvpPresenter> implements SimpleMvpView {
+public class SimpleActivity extends AbstractMvpActivity<SimpleMvpPresenter> implements SimpleMvpView {
     @BindView(R.id.status) protected TextView statusView;
 
     @Override
