@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import ch.grze.frogment.ActivityStateProvider;
+import ch.grze.frogment.State;
 import ch.grze.frogment.StateAware;
 import ch.grze.frogment.ViewStateAware;
 import ch.grze.frogment.core.Core;
-import ch.grze.frogment.frogment.Frogment;
+import ch.grze.frogment.frogment.FrogmentInterface;
 
-final public class StateAwareFrogmentActivityComponent<S extends FrogmentActivityState> implements StateAware<S>, ViewStateAware {
+final public class StateAwareFrogmentActivityComponent<S extends State> implements StateAware<S>, ViewStateAware {
     private final StateAwareFrogmentActivityInterface<S> stateAwareFrogmentActivity;
     private final Core core;
 
@@ -67,7 +68,7 @@ final public class StateAwareFrogmentActivityComponent<S extends FrogmentActivit
         outState.putParcelable(StateAwareFrogmentActivityInterface.STATE, state);
     }
 
-    public void onFrogmentConfigure(Frogment frogment) {
+    public void onFrogmentConfigure(FrogmentInterface frogment) {
         if (frogment instanceof ActivityStateProvider) {
             final ActivityStateProvider<S> provider = (ActivityStateProvider<S>) frogment;
 

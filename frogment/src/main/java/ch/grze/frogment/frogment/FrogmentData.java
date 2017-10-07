@@ -3,26 +3,28 @@ package ch.grze.frogment.frogment;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import ch.grze.frogment.State;
+
 public class FrogmentData implements Parcelable {
-    private final Class<? extends Frogment> clazz;
-    private final FrogmentState state;
+    private final Class<? extends FrogmentInterface> clazz;
+    private final State state;
     private final String tag;
 
-    private FrogmentData(Class<? extends Frogment> clazz, FrogmentState state, String tag) {
+    private FrogmentData(Class<? extends FrogmentInterface> clazz, State state, String tag) {
         this.clazz = clazz;
         this.state = state;
         this.tag = tag == null ? clazz.getCanonicalName() : tag;
     }
 
-    public static FrogmentData forClass(Class<? extends Frogment> clazz) {
+    public static FrogmentData forClass(Class<? extends FrogmentInterface> clazz) {
         return new Builder(clazz).build();
     }
 
-    public Class<? extends Frogment> getClazz() {
+    public Class<? extends FrogmentInterface> getClazz() {
         return clazz;
     }
 
-    public FrogmentState getState() {
+    public State getState() {
         return state;
     }
 
@@ -31,15 +33,15 @@ public class FrogmentData implements Parcelable {
     }
 
     public static class Builder {
-        private final Class<? extends Frogment> clazz;
-        private FrogmentState state = null;
+        private final Class<? extends FrogmentInterface> clazz;
+        private State state = null;
         private String tag = null;
 
-        public Builder(Class<? extends Frogment> clazz) {
+        public Builder(Class<? extends FrogmentInterface> clazz) {
             this.clazz = clazz;
         }
 
-        public Builder state(FrogmentState state) {
+        public Builder state(State state) {
             this.state = state;
             return this;
         }
@@ -67,8 +69,8 @@ public class FrogmentData implements Parcelable {
     }
 
     protected FrogmentData(Parcel in) {
-        this.clazz = (Class<? extends Frogment>) in.readSerializable();
-        this.state = in.readParcelable(FrogmentState.class.getClassLoader());
+        this.clazz = (Class<? extends FrogmentInterface>) in.readSerializable();
+        this.state = in.readParcelable(State.class.getClassLoader());
         this.tag = in.readString();
     }
 

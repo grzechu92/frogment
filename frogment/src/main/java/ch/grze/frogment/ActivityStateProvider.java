@@ -1,7 +1,5 @@
 package ch.grze.frogment;
 
-import ch.grze.frogment.activity.FrogmentActivityState;
-
-public interface ActivityStateProvider<T extends FrogmentActivityState> {
+public interface ActivityStateProvider<T extends State> {
     T getFrogmentActivityState();
 }

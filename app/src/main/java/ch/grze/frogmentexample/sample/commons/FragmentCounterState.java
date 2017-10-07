@@ -2,9 +2,9 @@ package ch.grze.frogmentexample.sample.commons;
 
 import android.os.Parcel;
 
-import ch.grze.frogment.frogment.FrogmentState;
+import ch.grze.frogment.State;
 
-public class FragmentCounterState extends FrogmentState {
+public class FragmentCounterState implements State {
     private int value;
 
     public FragmentCounterState(int value) {

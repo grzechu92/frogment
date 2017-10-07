@@ -11,11 +11,12 @@ import java.util.List;
 import ch.grze.frogment.activity.ActivityCallbacks;
 import ch.grze.frogment.activity.ActivityComponentInjector;
 import ch.grze.frogment.core.callbacks.ActivityComponentInjectorCallbacks;
-import ch.grze.frogment.core.callbacks.FragmentCallbacks;
 import ch.grze.frogment.core.component.AbstractActivityComponentInjector;
 import ch.grze.frogment.core.component.AbstractFragmentComponentInjector;
 import ch.grze.frogment.core.extension.AbstractExtension;
 import ch.grze.frogment.core.module.parser.Parser;
+import ch.grze.frogment.frogment.FragmentCallbacks;
+import ch.grze.frogment.frogment.FrogmentComponentInjector;
 
 public class Core {
     private final List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks = new ArrayList<>();
@@ -68,6 +69,7 @@ public class Core {
 
     private void initializeInjectors() {
         activityComponentInjectors.add(new ActivityComponentInjector());
+        fragmentComponentInjectors.add(new FrogmentComponentInjector());
     }
 
     private void initializeCallbacks() {

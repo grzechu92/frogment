@@ -2,11 +2,12 @@ package ch.grze.frogment.activity;
 
 import android.support.annotation.CallSuper;
 
+import ch.grze.frogment.State;
 import ch.grze.frogment.StateAware;
 import ch.grze.frogment.StateCallbacksAware;
-import ch.grze.frogment.frogment.Frogment;
+import ch.grze.frogment.frogment.FrogmentInterface;
 
-public interface StateAwareFrogmentActivityInterface<S extends FrogmentActivityState> extends FrogmentActivityInterface, StateAware<S>, StateCallbacksAware<S> {
+public interface StateAwareFrogmentActivityInterface<S extends State> extends FrogmentActivityInterface, StateAware<S>, StateCallbacksAware<S> {
     String STATE = "state";
 
     StateAwareFrogmentActivityComponent<S> getStateAwareFrogmentActivityComponent();
@@ -23,7 +24,7 @@ public interface StateAwareFrogmentActivityInterface<S extends FrogmentActivityS
     }
 
     @Override @CallSuper
-    default void onFrogmentConfigure(Frogment frogment) {
+    default void onFrogmentConfigure(FrogmentInterface frogment) {
         FrogmentActivityInterface.super.onFrogmentConfigure(frogment);
 
         getStateAwareFrogmentActivityComponent().onFrogmentConfigure(frogment);

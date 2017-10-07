@@ -4,14 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 
+import ch.grze.frogment.State;
 import ch.grze.frogment.frogment.FrogmentData;
 
 public class FrogmentActivityData implements Parcelable {
     private final Class<? extends AppCompatActivity> clazz;
-    private final FrogmentActivityState state;
+    private final State state;
     private final FrogmentData frogmentData;
 
-    public FrogmentActivityData(Class<? extends AppCompatActivity> clazz, FrogmentActivityState state, FrogmentData frogmentData) {
+    public FrogmentActivityData(Class<? extends AppCompatActivity> clazz, State state, FrogmentData frogmentData) {
         this.clazz = clazz;
         this.state = state;
         this.frogmentData = frogmentData;
@@ -25,7 +26,7 @@ public class FrogmentActivityData implements Parcelable {
         return clazz;
     }
 
-    public FrogmentActivityState getState() {
+    public State getState() {
         return state;
     }
 
@@ -35,14 +36,14 @@ public class FrogmentActivityData implements Parcelable {
 
     public static class Builder {
         private final Class<? extends AppCompatActivity> clazz;
-        private FrogmentActivityState state;
+        private State state;
         private FrogmentData frogmentData;
 
         public Builder(Class<? extends AppCompatActivity> clazz) {
             this.clazz = clazz;
         }
 
-        public Builder state(FrogmentActivityState state) {
+        public Builder state(State state) {
             this.state = state;
             return this;
         }
@@ -71,7 +72,7 @@ public class FrogmentActivityData implements Parcelable {
 
     protected FrogmentActivityData(Parcel in) {
         this.clazz = (Class<? extends AppCompatActivity>) in.readSerializable();
-        this.state = in.readParcelable(FrogmentActivityState.class.getClassLoader());
+        this.state = in.readParcelable(State.class.getClassLoader());
         this.frogmentData = in.readParcelable(FrogmentData.class.getClassLoader());
     }
 

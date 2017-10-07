@@ -2,9 +2,7 @@ package ch.grze.frogmentexample.sample.activityswitching;
 
 import android.os.Parcel;
 
-import ch.grze.frogment.activity.FrogmentActivityState;
-
-public class State extends FrogmentActivityState {
+public class State implements ch.grze.frogment.State {
     private String text;
 
     public State(String text) {

@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ch.grze.frogment.frogment.Frogment;
+import ch.grze.frogment.frogment.AbstractFrogment;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
 
-public class FragmentFirstWithButton extends Frogment {
+public class FragmentFirstWithButton extends AbstractFrogment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_first_with_button, container, false);

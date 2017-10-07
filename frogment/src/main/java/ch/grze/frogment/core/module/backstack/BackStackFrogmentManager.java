@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import java.util.List;
 
-import ch.grze.frogment.frogment.Frogment;
+import ch.grze.frogment.frogment.FrogmentInterface;
 
 public class BackStackFrogmentManager implements FragmentManager.OnBackStackChangedListener {
     private final BackStackChangeListener backStackChangeListener;
@@ -25,7 +25,7 @@ public class BackStackFrogmentManager implements FragmentManager.OnBackStackChan
         final int currentBackStackEntryCount = fragmentManager.getBackStackEntryCount();
 
         if (haveFragments()) {
-            final Frogment frogment = getParentFragment();
+            final FrogmentInterface frogment = getParentFragment();
 
             if (frogment != null) {
                 if (wasPushed(currentBackStackEntryCount)) {
@@ -57,9 +57,9 @@ public class BackStackFrogmentManager implements FragmentManager.OnBackStackChan
         return fragmentList != null && !fragmentList.isEmpty();
     }
 
-    private Frogment getParentFragment() {
+    private FrogmentInterface getParentFragment() {
         final List<Fragment> fragmentList = fragmentManager.getFragments();
 
-        return (Frogment) fragmentList.get(Math.max(0, fragmentList.size() - 2));
+        return (FrogmentInterface) fragmentList.get(Math.max(0, fragmentList.size() - 2));
     }
 }

@@ -1,9 +1,9 @@
 package ch.grze.frogment.core.module.backstack;
 
-import ch.grze.frogment.frogment.Frogment;
+import ch.grze.frogment.frogment.FrogmentInterface;
 
 public interface BackStackChangeListener {
-    void onFrogmentPushed(Frogment frogment);
-    void onFrogmentPopped(Frogment frogment);
+    void onFrogmentPushed(FrogmentInterface frogment);
+    void onFrogmentPopped(FrogmentInterface frogment);
     void onBackStackEmpty();
 }

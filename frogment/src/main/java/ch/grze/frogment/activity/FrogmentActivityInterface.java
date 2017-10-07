@@ -5,8 +5,8 @@ import android.support.annotation.IdRes;
 
 import ch.grze.frogment.ActivityInterface;
 import ch.grze.frogment.core.module.backstack.BackStackChangeListener;
-import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogment.frogment.FrogmentData;
+import ch.grze.frogment.frogment.FrogmentInterface;
 
 public interface FrogmentActivityInterface extends ActivityInterface, BackStackChangeListener {
     String FROGMENT_DATA = "frogment_data";
@@ -19,12 +19,12 @@ public interface FrogmentActivityInterface extends ActivityInterface, BackStackC
     FrogmentData getDefaultFrogmentData();
 
     @Override @CallSuper
-    default void onFrogmentPushed(Frogment frogment) {
+    default void onFrogmentPushed(FrogmentInterface frogment) {
         onFrogmentConfigure(frogment);
     }
 
     @Override @CallSuper
-    default void onFrogmentPopped(Frogment frogment) {
+    default void onFrogmentPopped(FrogmentInterface frogment) {
         onFrogmentConfigure(frogment);
     }
 
@@ -44,7 +44,7 @@ public interface FrogmentActivityInterface extends ActivityInterface, BackStackC
     }
 
     @CallSuper
-    default void onFrogmentConfigure(Frogment frogment) {
+    default void onFrogmentConfigure(FrogmentInterface frogment) {
         getFrogmentActivityComponent().onFrogmentConfigure(frogment);
     }
 }

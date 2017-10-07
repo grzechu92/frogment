@@ -1,10 +1,10 @@
 package ch.grze.frogment.core.module.provider;
 
-import ch.grze.frogment.frogment.Frogment;
+import ch.grze.frogment.frogment.FrogmentInterface;
 
 public class ReflectionFragmentInstanceProvider implements FragmentInstanceProvider {
     @Override
-    public Frogment getInstance(Class<? extends Frogment> frogmentClass) {
+    public FrogmentInterface getInstance(Class<? extends FrogmentInterface> frogmentClass) {
         try {
             return frogmentClass.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {

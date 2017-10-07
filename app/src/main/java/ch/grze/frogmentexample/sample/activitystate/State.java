@@ -2,9 +2,7 @@ package ch.grze.frogmentexample.sample.activitystate;
 
 import android.os.Parcel;
 
-import ch.grze.frogment.activity.FrogmentActivityState;
-
-public class State extends FrogmentActivityState {
+public class State implements ch.grze.frogment.State {
     private int counter;
     private boolean changed;
 

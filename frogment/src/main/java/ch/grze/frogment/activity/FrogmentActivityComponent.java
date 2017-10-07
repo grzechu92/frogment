@@ -3,15 +3,16 @@ package ch.grze.frogment.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import ch.grze.frogment.State;
 import ch.grze.frogment.core.Core;
 import ch.grze.frogment.core.module.backstack.BackStackFrogmentManager;
 import ch.grze.frogment.core.module.provider.FragmentInstanceProvider;
-import ch.grze.frogment.frogment.Frogment;
 import ch.grze.frogment.frogment.FrogmentData;
-import ch.grze.frogment.frogment.FrogmentState;
-import ch.grze.frogment.frogment.StateAwareFrogment;
+import ch.grze.frogment.frogment.FrogmentInterface;
+import ch.grze.frogment.frogment.StateAwareFrogmentInterface;
 
 final public class FrogmentActivityComponent {
     private final FrogmentActivityInterface frogmentActivity;
@@ -47,22 +48,22 @@ final public class FrogmentActivityComponent {
         bundle.putParcelable(FrogmentActivityInterface.FROGMENT_DATA, frogmentData);
     }
 
-    public void onFrogmentConfigure(Frogment frogment) {
+    public void onFrogmentConfigure(FrogmentInterface frogment) {
         final FrogmentData data = frogment.getData();
         frogmentData = data;
 
-        if (frogment instanceof StateAwareFrogment) {
-            final StateAwareFrogment stateAwareFrogment = (StateAwareFrogment) frogment;
-            final FrogmentState state;
+        if (frogment instanceof StateAwareFrogmentInterface) {
+            final StateAwareFrogmentInterface stateAwareFrogment = (StateAwareFrogmentInterface) frogment;
+            final State state;
 
-            if (data.getState() == null || !(data.getState() instanceof FrogmentState)) {
-                state = (FrogmentState) stateAwareFrogment.getDefaultState();
+            if (data.getState() == null || !(data.getState() instanceof State)) {
+                state = stateAwareFrogment.getDefaultState();
             } else {
                 state = data.getState();
             }
 
             final Bundle bundle = new Bundle();
-            bundle.putParcelable(StateAwareFrogment.STATE, state);
+            bundle.putParcelable(StateAwareFrogmentInterface.STATE, state);
 
             frogment.setArguments(bundle);
         }
@@ -75,13 +76,13 @@ final public class FrogmentActivityComponent {
     }
 
     public void switchFrogment(FrogmentData data) {
-        final Frogment frogment = getFrogmentFrom(data);
+        final FrogmentInterface frogment = getFrogmentFrom(data);
         frogment.setData(data);
 
         onFrogmentConfigure(frogment);
 
         frogmentActivity.getSupportFragmentManager().beginTransaction()
-                .replace(frogmentActivity.getFrogmentContainerId(), frogment, data.getTag())
+                .replace(frogmentActivity.getFrogmentContainerId(), (Fragment) frogment, data.getTag())
                 .addToBackStack(data.getTag())
                 .commit();
     }
@@ -101,10 +102,14 @@ final public class FrogmentActivityComponent {
         frogmentActivity.finish();
     }
 
-    private Frogment getFrogmentFrom(FrogmentData data) {
-        final Frogment fragmentByTag = (Frogment) frogmentActivity.getSupportFragmentManager().findFragmentByTag(data.getTag());
+    private FrogmentInterface getFrogmentFrom(FrogmentData data) {
+        final FrogmentInterface fragmentByTag = (FrogmentInterface) frogmentActivity.getSupportFragmentManager().findFragmentByTag(data.getTag());
         final FragmentInstanceProvider fragmentInstanceProvider = core.getConfig().getFragmentInstanceProvider();
 
-        return fragmentByTag != null ? fragmentByTag : fragmentInstanceProvider.getInstance(data.getClazz());
+        final FrogmentInterface frogment = fragmentByTag != null ? fragmentByTag : fragmentInstanceProvider.getInstance(data.getClazz());
+
+        core.injectComponents((Fragment) frogment);
+
+        return frogment;
     }
 }

@@ -10,11 +10,11 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ch.grze.frogment.frogment.StateAwareFrogment;
+import ch.grze.frogment.frogment.AbstractStateAwareFrogment;
 import ch.grze.frogmentexample.R;
 import ch.grze.frogmentexample.sample.commons.FragmentCounterState;
 
-public class FragmentCounter extends StateAwareFrogment<FragmentCounterState> {
+public class FragmentCounter extends AbstractStateAwareFrogment<FragmentCounterState> {
     @BindView(R.id.value) protected TextView value;
 
     @Override
@@ -41,6 +41,8 @@ public class FragmentCounter extends StateAwareFrogment<FragmentCounterState> {
 
     @OnClick(R.id.increment)
     public void onIncrementClick() {
+        final FragmentCounterState state = getState();
+
         int value = state.getValue();
         state.setValue(++value);
 
@@ -49,6 +51,8 @@ public class FragmentCounter extends StateAwareFrogment<FragmentCounterState> {
 
     @OnClick(R.id.decrement)
     public void onDecrementClick() {
+        final FragmentCounterState state = getState();
+
         int value = state.getValue();
         state.setValue(--value);
 

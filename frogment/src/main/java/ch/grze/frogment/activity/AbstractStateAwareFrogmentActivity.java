@@ -1,6 +1,8 @@
 package ch.grze.frogment.activity;
 
-public abstract class AbstractStateAwareFrogmentActivity<S extends FrogmentActivityState> extends AbstractFrogmentActivity implements StateAwareFrogmentActivityInterface<S> {
+import ch.grze.frogment.State;
+
+public abstract class AbstractStateAwareFrogmentActivity<S extends State> extends AbstractFrogmentActivity implements StateAwareFrogmentActivityInterface<S> {
     private StateAwareFrogmentActivityComponent<S> stateAwareFrogmentActivityComponent;
 
     @Override
