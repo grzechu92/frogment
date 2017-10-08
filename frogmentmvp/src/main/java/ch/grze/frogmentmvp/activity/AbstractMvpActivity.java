@@ -5,15 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import ch.grze.frogmentmvp.MvpPresenter;
 
 public abstract class AbstractMvpActivity<P extends MvpPresenter> extends AppCompatActivity implements MvpActivityInterface<P>  {
-    private MvpActivityComponent component;
+    private MvpActivityComponent mvpActivityComponent;
 
     @Override
     public MvpActivityComponent getMvpActivityComponent() {
-        return component;
+        return mvpActivityComponent;
     }
 
     @Override
     public void setMvpActivityComponent(MvpActivityComponent component) {
-        this.component = component;
+        mvpActivityComponent = component;
     }
 }

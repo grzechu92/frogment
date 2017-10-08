@@ -3,15 +3,15 @@ package ch.grze.frogment.frogment;
 import android.support.v4.app.Fragment;
 
 public abstract class AbstractFrogment extends Fragment implements FrogmentInterface {
-    private FrogmentComponent component;
+    private FrogmentComponent frogmentComponent;
 
     @Override
     public FrogmentComponent getFrogmentComponent() {
-        return component;
+        return frogmentComponent;
     }
 
     @Override
     public void setFrogmentComponent(FrogmentComponent component) {
-        this.component = component;
+        frogmentComponent = component;
     }
 }
