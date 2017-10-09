@@ -10,12 +10,10 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ch.grze.frogment.frogment.AbstractFrogment;
 import ch.grze.frogmentexample.R;
-import ch.grze.frogmentmvp.view.MvpPresenterComponent;
+import ch.grze.frogmentmvp.fragment.AbstractMvpFrogment;
 
-public class Fragment extends AbstractFrogment implements ViewInterface {
-    private MvpPresenterComponent<PresenterInterface> mvpPresenterComponent;
+public class Fragment extends AbstractMvpFrogment<PresenterInterface> implements ViewInterface {
     private PresenterInterface presenter = new Presenter();
 
     @BindView(R.id.status) protected TextView statusView;
@@ -31,16 +29,6 @@ public class Fragment extends AbstractFrogment implements ViewInterface {
 
         ButterKnife.bind(this, view);
         attachPresenter(presenter);
-    }
-
-    @Override
-    public MvpPresenterComponent<PresenterInterface> getMvpPresenterComponent() {
-        return mvpPresenterComponent;
-    }
-
-    @Override
-    public void setMvpPresenterComponent(MvpPresenterComponent<PresenterInterface> component) {
-        mvpPresenterComponent = component;
     }
 
     @Override
