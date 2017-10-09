@@ -1,10 +1,10 @@
-package ch.grze.frogmentexample.mvpsample.simplemvp;
+package ch.grze.frogmentexample.mvpsample.mvpactivity;
 
 import ch.grze.frogmentmvp.presenter.AbstractMvpPresenter;
 
-public class SimplePresenter extends AbstractMvpPresenter<SimpleMvpView> implements SimpleMvpPresenter {
+public class Presenter extends AbstractMvpPresenter<ViewInterface> implements PresenterInterface {
     @Override
-    public void onAttach(SimpleMvpView view) {
+    public void onAttach(ViewInterface view) {
         super.onAttach(view);
 
         getView().setStatus("Not clicked!");

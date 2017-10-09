@@ -26,15 +26,15 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SimpleMvpTest {
+public class MvpActivityTest {
 
     @Rule
     public ActivityTestRule<DemoActivity> mActivityTestRule = new ActivityTestRule<>(DemoActivity.class);
 
     @Test
-    public void simpleMvpTest() {
+    public void mvpActivityTest() {
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.mvp_simple), withText("Simple MVP"),
+                allOf(withId(R.id.mvp_activity), withText("MVP Activity"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

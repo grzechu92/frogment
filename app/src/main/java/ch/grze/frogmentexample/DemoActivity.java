@@ -81,9 +81,15 @@ public class DemoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @OnClick(R.id.mvp_simple)
-    public void onMvpSimpleClick() {
-        final Intent intent = new Intent(this, ch.grze.frogmentexample.mvpsample.simplemvp.SimpleActivity.class);
+    @OnClick(R.id.mvp_activity)
+    public void onMvpActivityClick() {
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.mvpsample.mvpactivity.Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.mvp_fragment)
+    public void onMvpFragmentClick() {
+        final Intent intent = new Intent(this, ch.grze.frogmentexample.mvpsample.mvpfragment.Activity.class);
         startActivity(intent);
     }
 }

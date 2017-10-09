@@ -2,8 +2,7 @@ package ch.grze.frogmentmvp.presenter;
 
 import android.support.annotation.CallSuper;
 
-import ch.grze.frogmentmvp.MvpPresenter;
-import ch.grze.frogmentmvp.MvpView;
+import ch.grze.frogmentmvp.view.MvpView;
 
 public abstract class AbstractMvpPresenter<V extends MvpView> implements MvpPresenter<V> {
     private V view;

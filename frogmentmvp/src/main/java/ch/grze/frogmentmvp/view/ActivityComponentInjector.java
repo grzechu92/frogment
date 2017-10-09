@@ -1,4 +1,4 @@
-package ch.grze.frogmentmvp.activity;
+package ch.grze.frogmentmvp.view;
 
 import android.app.Activity;
 
@@ -9,10 +9,10 @@ public class ActivityComponentInjector extends AbstractActivityComponentInjector
     @Override
     public void inject(Core core, Activity activity) {
         try {
-            final MvpActivityInterface mvpActivity = getTypedActivity(activity);
+            final PresenterAwareMvpView mvpActivity = getTypedActivity(activity);
 
-            final MvpActivityComponent component = new MvpActivityComponent(core, mvpActivity);
-            mvpActivity.setMvpActivityComponent(component);
+            final MvpPresenterComponent component = new MvpPresenterComponent(mvpActivity);
+            mvpActivity.setMvpPresenterComponent(component);
         } catch (ClassCastException ignored) {}
     }
 }
