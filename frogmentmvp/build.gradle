@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 
 android {
@@ -32,4 +33,6 @@ android {
 
 dependencies {
     api project(":frogment")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin}"
 }
