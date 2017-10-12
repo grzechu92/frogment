@@ -37,8 +37,6 @@ dependencies {
     implementation project(":frogment")
     implementation project(":frogmentmvp")
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin}"
-
     implementation "com.jakewharton:butterknife:${butterknife}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife}"
 

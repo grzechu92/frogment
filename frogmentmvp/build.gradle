@@ -34,5 +34,6 @@ android {
 dependencies {
     api project(":frogment")
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlin}"
 }

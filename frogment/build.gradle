@@ -32,7 +32,8 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlin}"
 
     api "com.android.support:appcompat-v7:${android_support}"
 }
