@@ -16,16 +16,19 @@ class FrogmentFoundation private constructor(builder: Builder) {
     }
 
     class Builder(val application: Application) {
-        val extensions = ArrayList<AbstractExtension>()
-        var config = Config.default
+        internal val extensions = ArrayList<AbstractExtension>()
+        internal var config = Config.getDefault()
 
         fun extension(extension: AbstractExtension): Builder {
             extensions.add(extension)
             return this
         }
 
-        fun build(): FrogmentFoundation {
-            return FrogmentFoundation(this)
+        fun config(config: Config): Builder {
+            this.config = config
+            return this
         }
+
+        fun build(): FrogmentFoundation = FrogmentFoundation(this)
     }
 }

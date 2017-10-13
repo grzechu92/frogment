@@ -4,6 +4,10 @@ import ch.grze.frogment.core.provider.FragmentInstanceProvider
 import ch.grze.frogment.core.provider.ReflectionFragmentInstanceProvider
 
 class Config private constructor(builder: Builder) {
+    companion object {
+        @JvmStatic fun getDefault(): Config = Config.Builder().build()
+    }
+
     val fragmentInstanceProvider: FragmentInstanceProvider
     val isCallActivityFinishOnEmptyBackStack: Boolean
 
@@ -13,15 +17,19 @@ class Config private constructor(builder: Builder) {
     }
 
     class Builder {
-        var fragmentInstanceProvider: FragmentInstanceProvider = ReflectionFragmentInstanceProvider()
-        var isCallActivityFinishOnEmptyBackStack = true
+        internal var fragmentInstanceProvider: FragmentInstanceProvider = ReflectionFragmentInstanceProvider()
+        internal var isCallActivityFinishOnEmptyBackStack = true
 
-        fun build(): Config {
-            return Config(this)
+        fun fragmentInstanceProvider(fragmentInstanceProvider: FragmentInstanceProvider): Builder {
+            this.fragmentInstanceProvider = fragmentInstanceProvider
+            return this
         }
-    }
 
-    companion object {
-        val default: Config = Config.Builder().build()
+        fun callActivityFinishOnEmptyBackStack(isCallActivityFinishOnEmptyBackStack: Boolean): Builder {
+            this.isCallActivityFinishOnEmptyBackStack = isCallActivityFinishOnEmptyBackStack
+            return this
+        }
+
+        fun build(): Config = Config(this)
     }
 }

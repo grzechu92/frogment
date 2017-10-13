@@ -13,7 +13,7 @@ abstract class AbstractExtension {
     private val fragmentLifecycleCallbacks = ArrayList<FragmentManager.FragmentLifecycleCallbacks>()
     private val activityComponentInjectors = ArrayList<AbstractActivityComponentInjector>()
     private val fragmentComponentInjectors = ArrayList<AbstractFragmentComponentInjector>()
-    protected var core: Core? = null
+    protected lateinit var core: Core
 
     @CallSuper
     open fun initialize(core: Core) {

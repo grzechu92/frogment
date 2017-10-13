@@ -9,6 +9,7 @@ import ch.grze.frogment.core.backstack.BackStackChangeListener;
 import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogment.frogment.FrogmentInterface;
 
+//still in Java due to lack of interop: https://youtrack.jetbrains.com/issue/KT-19415
 public interface FrogmentActivityInterface extends ActivityInterface, BackStackChangeListener, SwitchAware {
     String FROGMENT_DATA = "frogment_data";
 

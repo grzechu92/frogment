@@ -9,6 +9,7 @@ class BackStackFrogmentManager(
         private val fragmentManager: FragmentManager,
         private val listener: BackStackChangeListener
 ) : FragmentManager.OnBackStackChangedListener {
+
     private var lastBackStackEntryCount: Int = 0
 
     init {
@@ -18,11 +19,11 @@ class BackStackFrogmentManager(
     }
 
     override fun onBackStackChanged() {
-        val backStackEntryCount: Int = fragmentManager.backStackEntryCount
-        val fragments: MutableList<Fragment> = fragmentManager.fragments
+        val backStackEntryCount = fragmentManager.backStackEntryCount
+        val fragments = fragmentManager.fragments
 
         if (hasFragments(fragments)) {
-            val frogment: FrogmentInterface? = getParentFrogment(fragments)
+            val frogment = getParentFrogment(fragments)
 
             if (frogment != null) {
                 if (wasPushed(backStackEntryCount)) {

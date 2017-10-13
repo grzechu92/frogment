@@ -7,6 +7,7 @@ import ch.grze.frogment.StateAware;
 import ch.grze.frogment.StateCallbacksAware;
 import ch.grze.frogment.frogment.FrogmentInterface;
 
+//still in Java due to lack of interop: https://youtrack.jetbrains.com/issue/KT-19415
 public interface StateAwareFrogmentActivityInterface<S extends State> extends FrogmentActivityInterface, StateAware<S>, StateCallbacksAware<S> {
     String STATE = "state";
 
