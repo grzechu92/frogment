@@ -7,8 +7,7 @@ import android.support.v4.app.FragmentManager
 import ch.grze.frogment.activity.ActivityCallbacks
 import ch.grze.frogment.activity.ActivityComponentInjector
 import ch.grze.frogment.core.callbacks.ActivityComponentInjectorCallbacks
-import ch.grze.frogment.core.component.AbstractActivityComponentInjector
-import ch.grze.frogment.core.component.AbstractFragmentComponentInjector
+import ch.grze.frogment.core.component.ComponentInjector
 import ch.grze.frogment.core.extension.AbstractExtension
 import ch.grze.frogment.core.parser.Parser
 import ch.grze.frogment.frogment.FragmentCallbacks
@@ -16,8 +15,8 @@ import ch.grze.frogment.frogment.FrogmentComponentInjector
 import java.util.*
 
 class Core(application: Application, val config: Config, extensions: List<AbstractExtension>) {
-    private val activityComponentInjectors = ArrayList<AbstractActivityComponentInjector>()
-    private val fragmentComponentInjectors = ArrayList<AbstractFragmentComponentInjector>()
+    private val activityComponentInjectors = ArrayList<ComponentInjector<Activity>>()
+    private val fragmentComponentInjectors = ArrayList<ComponentInjector<Fragment>>()
     val fragmentLifecycleCallbacks = ArrayList<FragmentManager.FragmentLifecycleCallbacks>()
     val activityLifecycleCallbacks = ArrayList<Application.ActivityLifecycleCallbacks>()
 
@@ -61,10 +60,10 @@ class Core(application: Application, val config: Config, extensions: List<Abstra
         for (extension in extensions) {
             extension.initialize(this)
 
-            activityLifecycleCallbacks.addAll(extension.getActivityLifecycleCallbacks())
-            fragmentLifecycleCallbacks.addAll(extension.getFragmentLifecycleCallbacks())
-            activityComponentInjectors.addAll(extension.getActivityComponentInjectors())
-            fragmentComponentInjectors.addAll(extension.getFragmentComponentInjectors())
+            activityLifecycleCallbacks.addAll(extension.activityLifecycleCallbacks)
+            fragmentLifecycleCallbacks.addAll(extension.fragmentLifecycleCallbacks)
+            activityComponentInjectors.addAll(extension.activityComponentInjectors)
+            fragmentComponentInjectors.addAll(extension.fragmentComponentInjectors)
         }
     }
 }

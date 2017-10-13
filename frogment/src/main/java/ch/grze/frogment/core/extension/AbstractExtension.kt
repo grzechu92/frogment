@@ -1,39 +1,24 @@
 package ch.grze.frogment.core.extension
 
+import android.app.Activity
 import android.app.Application
 import android.support.annotation.CallSuper
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import ch.grze.frogment.core.Core
-import ch.grze.frogment.core.component.AbstractActivityComponentInjector
-import ch.grze.frogment.core.component.AbstractFragmentComponentInjector
+import ch.grze.frogment.core.component.ComponentInjector
 import java.util.*
 
 abstract class AbstractExtension {
-    private val activityLifecycleCallbacks = ArrayList<Application.ActivityLifecycleCallbacks>()
-    private val fragmentLifecycleCallbacks = ArrayList<FragmentManager.FragmentLifecycleCallbacks>()
-    private val activityComponentInjectors = ArrayList<AbstractActivityComponentInjector>()
-    private val fragmentComponentInjectors = ArrayList<AbstractFragmentComponentInjector>()
+    val activityLifecycleCallbacks = ArrayList<Application.ActivityLifecycleCallbacks>()
+    val fragmentLifecycleCallbacks = ArrayList<FragmentManager.FragmentLifecycleCallbacks>()
+    val activityComponentInjectors = ArrayList<ComponentInjector<Activity>>()
+    val fragmentComponentInjectors = ArrayList<ComponentInjector<Fragment>>()
     protected lateinit var core: Core
 
     @CallSuper
     open fun initialize(core: Core) {
         this.core = core
-    }
-
-    fun getActivityLifecycleCallbacks(): List<Application.ActivityLifecycleCallbacks> {
-        return activityLifecycleCallbacks
-    }
-
-    fun getFragmentLifecycleCallbacks(): List<FragmentManager.FragmentLifecycleCallbacks> {
-        return fragmentLifecycleCallbacks
-    }
-
-    fun getActivityComponentInjectors(): List<AbstractActivityComponentInjector> {
-        return activityComponentInjectors
-    }
-
-    fun getFragmentComponentInjectors(): List<AbstractFragmentComponentInjector> {
-        return fragmentComponentInjectors
     }
 
     protected fun addActivityLifecycleCallback(callback: Application.ActivityLifecycleCallbacks) {
@@ -44,11 +29,11 @@ abstract class AbstractExtension {
         fragmentLifecycleCallbacks.add(callback)
     }
 
-    protected fun addActivityComponentInjector(injector: AbstractActivityComponentInjector) {
+    protected fun addActivityComponentInjector(injector: ComponentInjector<Activity>) {
         activityComponentInjectors.add(injector)
     }
 
-    protected fun addFragmentComponentInjector(injector: AbstractFragmentComponentInjector) {
+    protected fun addFragmentComponentInjector(injector: ComponentInjector<Fragment>) {
         fragmentComponentInjectors.add(injector)
     }
 }

@@ -4,11 +4,8 @@ import android.support.v4.app.Fragment
 
 import ch.grze.frogment.core.Core
 
-abstract class AbstractFragmentComponentInjector {
-    abstract fun inject(core: Core, fragment: Fragment)
-
+@Deprecated("fallback, use ComponentInjector")
+abstract class AbstractFragmentComponentInjector : ComponentInjector<Fragment> {
     @Throws(ClassCastException::class)
-    protected fun <T> getTypedFragment(fragment: Fragment): T {
-        return fragment as T
-    }
+    protected fun <T> getTypedFragment(fragment: Fragment): T = fragment as T
 }
