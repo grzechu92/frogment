@@ -54,8 +54,6 @@ class StateAwareFrogmentActivityComponent<S : State>(
     }
 
     private fun reloadState(intent: Intent, savedInstanceState: Bundle?) {
-        val state: S = core.parser.getData(StateAwareFrogmentActivityInterface.STATE, defaultState, savedInstanceState, intent)
-
-        this.state = state
+        this.state = core.parser.getData(StateAwareFrogmentActivityInterface.STATE, defaultState, savedInstanceState, intent)
     }
 }

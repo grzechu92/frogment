@@ -12,9 +12,9 @@ class FrogmentActivityData
         val state: State? = null,
         val frogmentData: FrogmentData? = null
 ) : Parcelable {
-    private constructor (builder: Builder) : this(builder.clazz, builder.state, builder.frogmentData)
+    private constructor(builder: Builder) : this(builder.clazz, builder.state, builder.frogmentData)
 
-    class Builder(var clazz: Class<out Activity>) {
+    class Builder(val clazz: Class<out Activity>) {
         internal var state: State? = null
         internal var frogmentData: FrogmentData? = null
 
@@ -42,7 +42,8 @@ class FrogmentActivityData
     }
 
     companion object {
-        @JvmStatic fun forClass(clazz: Class<out Activity>): FrogmentActivityData = FrogmentActivityData(clazz)
+        @JvmStatic
+        fun forClass(clazz: Class<out Activity>): FrogmentActivityData = FrogmentActivityData(clazz)
 
         @JvmField
         val CREATOR: Parcelable.Creator<FrogmentActivityData> = object : Parcelable.Creator<FrogmentActivityData> {

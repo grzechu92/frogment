@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import ch.grze.frogment.State
 import ch.grze.frogment.core.Core
 import ch.grze.frogment.core.backstack.BackStackFrogmentManager
 import ch.grze.frogment.core.provider.FragmentInstanceProvider
@@ -38,21 +37,12 @@ class FrogmentActivityComponent(
         bundle.putParcelable(FrogmentActivityInterface.FROGMENT_DATA, frogmentData)
     }
 
-    //TODO("refactor - being aware of nullability here")
     fun onFrogmentConfigure(frogment: FrogmentInterface) {
         frogmentData = frogment.data
 
         if (frogment is StateAwareFrogmentInterface<*>) {
-            val state: State
-
-            if (frogmentData.state == null || frogmentData.state !is State) {
-                state = frogment.defaultState
-            } else {
-                state = frogmentData.state
-            }
-
             val bundle = Bundle()
-            bundle.putParcelable(StateAwareFrogmentInterface.STATE, state)
+            bundle.putParcelable(StateAwareFrogmentInterface.STATE, frogment.data.state ?: frogmentData.state)
 
             frogment.arguments = bundle
         }
@@ -78,7 +68,6 @@ class FrogmentActivityComponent(
                 .commit()
     }
 
-    //TODO("refactor - being aware of nullability here")
     fun switchActivity(data: FrogmentActivityData) {
         val clazz = data.clazz
         val intent = Intent(frogmentActivity as Activity, clazz)

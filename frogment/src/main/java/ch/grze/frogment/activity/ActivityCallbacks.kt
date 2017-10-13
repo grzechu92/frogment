@@ -26,15 +26,15 @@ class ActivityCallbacks(core: Core) : AbstractActivityLifecycleCallbacks(core) {
         }
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {
-        super.onActivitySaveInstanceState(activity, bundle)
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+        super.onActivitySaveInstanceState(activity, outState)
 
         if (activity is FrogmentActivityInterface) {
-            activity.frogmentActivityComponent.onActivitySaveInstanceState(bundle)
+            activity.frogmentActivityComponent.onActivitySaveInstanceState(outState)
         }
 
         if (activity is StateAwareFrogmentActivityInterface<*>) {
-            activity.stateAwareFrogmentActivityComponent.onActivitySaveInstanceState(bundle)
+            activity.stateAwareFrogmentActivityComponent.onActivitySaveInstanceState(outState)
         }
     }
 }
