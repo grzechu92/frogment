@@ -7,6 +7,7 @@ import ch.grze.frogment.SwitchAware;
 import ch.grze.frogment.activity.FrogmentActivityData;
 import ch.grze.frogment.activity.FrogmentActivityInterface;
 
+//still in Java due to lack of interop: https://youtrack.jetbrains.com/issue/KT-19415
 public interface FrogmentInterface extends FragmentInterface, SwitchAware {
     FrogmentComponent getFrogmentComponent();
     void setFrogmentComponent(FrogmentComponent component);
