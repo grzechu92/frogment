@@ -8,6 +8,7 @@ import ch.grze.frogmentmvp.presenter.MvpPresenter;
 import ch.grze.frogmentmvp.view.MvpPresenterComponent;
 import ch.grze.frogmentmvp.view.PresenterAwareMvpView;
 
+//still in Java due to lack of interop: https://youtrack.jetbrains.com/issue/KT-19415
 public abstract class AbstractMvpFrogment<P extends MvpPresenter> extends Fragment implements PresenterAwareMvpView<P>, FrogmentInterface {
     private MvpPresenterComponent<P> mvpPresenterComponent;
     private FrogmentComponent frogmentComponent;
