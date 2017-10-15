@@ -7,17 +7,16 @@ import ch.grze.frogment.State
 import ch.grze.frogment.StateAware
 import ch.grze.frogment.ViewStateAware
 import ch.grze.frogment.core.Core
+import ch.grze.frogment.core.backstack.BackStackChangeListener
 import ch.grze.frogment.frogment.FrogmentInterface
 
-class StateAwareFrogmentActivityComponent<S : State>(
-        private val core: Core,
-        private val stateAwareFrogmentActivity: StateAwareFrogmentActivityInterface<S>
-) : StateAware<S>, ViewStateAware {
+class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateAware, BackStackChangeListener {
+    lateinit var core: Core
+    lateinit var stateAwareFrogmentActivity: StateAwareFrogmentActivityInterface<S>
 
-    override val defaultState: S = stateAwareFrogmentActivity.defaultState
     override var isViewReady: Boolean = false
 
-    override var state: S = defaultState
+    override var state: S? = null
         set(value) {
             field = value
 
@@ -34,6 +33,16 @@ class StateAwareFrogmentActivityComponent<S : State>(
         stateAwareFrogmentActivity.onViewStateChange(state)
     }
 
+    override fun onFrogmentPushed(frogment: FrogmentInterface) {
+        onFrogmentConfigure(frogment)
+    }
+
+    override fun onFrogmentPopped(frogment: FrogmentInterface) {
+        onFrogmentConfigure(frogment)
+    }
+
+    override fun onBackStackEmpty() {}
+
     fun onActivityCreated(savedInstanceState: Bundle?) {
         reloadState(stateAwareFrogmentActivity.getIntent(), savedInstanceState)
     }
@@ -47,13 +56,13 @@ class StateAwareFrogmentActivityComponent<S : State>(
         outState.putParcelable(StateAwareFrogmentActivityInterface.STATE, state)
     }
 
-    fun onFrogmentConfigure(frogment: FrogmentInterface) {
+    private fun onFrogmentConfigure(frogment: FrogmentInterface) {
         if (frogment is ActivityStateProvider<*>) {
             state = frogment.frogmentActivityState as S
         }
     }
 
     private fun reloadState(intent: Intent, savedInstanceState: Bundle?) {
-        this.state = core.parser.getData(StateAwareFrogmentActivityInterface.STATE, defaultState, savedInstanceState, intent)
+        this.state = core.parser.getData(StateAwareFrogmentActivityInterface.STATE, stateAwareFrogmentActivity.defaultState, savedInstanceState, intent)
     }
 }

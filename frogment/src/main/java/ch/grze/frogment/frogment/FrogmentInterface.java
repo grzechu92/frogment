@@ -24,12 +24,12 @@ public interface FrogmentInterface extends FragmentInterface, SwitchAware {
 
     @Override @CallSuper
     default void switchFrogment(FrogmentData data) {
-        getFrogmentActivity().switchFrogment(data);
+        getFrogmentActivity().getFrogmentActivityComponent().switchFrogment(data);
     }
 
     @Override @CallSuper
     default void switchActivity(FrogmentActivityData data) {
-        getFrogmentActivity().switchActivity(data);
+        getFrogmentActivity().getFrogmentActivityComponent().switchActivity(data);
     }
 
     @CallSuper

@@ -11,9 +11,8 @@ class StateAwareFrogmentComponent<S : State>(
         private val stateAwareFrogment: StateAwareFrogmentInterface<S>
 ) : StateAware<S>, ViewStateAware {
 
-    override val defaultState: S = stateAwareFrogment.defaultState
     override var isViewReady = false
-    override var state: S = defaultState
+    override var state: S? = stateAwareFrogment.defaultState
         set(value) {
             field = value
 
@@ -44,6 +43,6 @@ class StateAwareFrogmentComponent<S : State>(
     }
 
     private fun reloadState(arguments: Bundle, savedInstanceState: Bundle?) {
-        this.state = core.parser.getData(StateAwareFrogmentInterface.STATE, defaultState, arguments, savedInstanceState)
+        this.state = core.parser.getData(StateAwareFrogmentInterface.STATE, stateAwareFrogment.defaultState, arguments, savedInstanceState)
     }
 }

@@ -42,7 +42,7 @@ public class DemoActivity extends AppCompatActivity {
     @OnClick(R.id.defining_initial_fragment)
     public void onDefiningInitialFragmentClick() {
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
-        intent.putExtra(FrogmentActivityInterface.FROGMENT_DATA, FrogmentData.forClass(FragmentSecond.class));
+        intent.putExtra(FrogmentActivityInterface.Companion.getFROGMENT_DATA(), FrogmentData.forClass(FragmentSecond.class)); //todo find nicer way
         startActivity(intent);
     }
 
@@ -53,7 +53,7 @@ public class DemoActivity extends AppCompatActivity {
                 .build();
 
         final Intent intent = new Intent(this, ch.grze.frogmentexample.sample.defininginitialfragment.Activity.class);
-        intent.putExtra(FrogmentActivityInterface.FROGMENT_DATA, frogmentData);
+        intent.putExtra(FrogmentActivityInterface.Companion.getFROGMENT_DATA(), frogmentData); ////todo find nicer way
         startActivity(intent);
     }
 
