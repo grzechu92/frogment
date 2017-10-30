@@ -7,15 +7,14 @@ buildscript {
         mavenCentral()
         google()
         mavenLocal()
-        maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://maven.fabric.io/public" }
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:${gradle_build_tools}"
+        classpath "com.android.tools.build:gradle:$gradle_build_tools"
         classpath "com.github.ben-manes:gradle-versions-plugin:0.17.0"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
     }
 }
 

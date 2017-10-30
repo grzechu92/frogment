@@ -36,15 +36,15 @@ dependencies {
     implementation project(":frogment")
     implementation project(":frogmentmvp")
 
-    implementation "com.jakewharton:butterknife:${butterknife}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife}"
+    implementation "com.jakewharton:butterknife:$butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
 
-    implementation "com.android.support:appcompat-v7:${android_support}"
-    implementation "com.android.support:design:${android_support}"
-    implementation "com.android.support:support-v4:${android_support}"
-    implementation "com.android.support:support-v13:${android_support}"
-    implementation "com.android.support:cardview-v7:${android_support}"
-    implementation "com.android.support:recyclerview-v7:${android_support}"
+    implementation "com.android.support:appcompat-v7:$android_support"
+    implementation "com.android.support:design:$android_support"
+    implementation "com.android.support:support-v4:$android_support"
+    implementation "com.android.support:support-v13:$android_support"
+    implementation "com.android.support:cardview-v7:$android_support"
+    implementation "com.android.support:recyclerview-v7:$android_support"
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
