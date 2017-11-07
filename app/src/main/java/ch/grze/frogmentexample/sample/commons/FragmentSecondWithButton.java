@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ch.grze.frogment.core.navigation.FrogmentData;
 import ch.grze.frogment.frogment.AbstractFrogment;
-import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
 
 public class FragmentSecondWithButton extends AbstractFrogment {
@@ -27,6 +27,6 @@ public class FragmentSecondWithButton extends AbstractFrogment {
 
     @OnClick(R.id.button)
     public void onButtonClick() {
-        getFrogmentActivity().switchFrogment(FrogmentData.forClass(FragmentFirstWithButton.class));
+        getFrogmentActivity().getNavigator().to(FrogmentData.forClass(FragmentFirstWithButton.class));
     }
 }

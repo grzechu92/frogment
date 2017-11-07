@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.grze.frogment.activity.FrogmentActivityInterface;
-import ch.grze.frogment.frogment.FrogmentData;
+import ch.grze.frogment.core.navigation.FrogmentData;
 import ch.grze.frogmentexample.sample.commons.FragmentCounterState;
 import ch.grze.frogmentexample.sample.commons.FragmentSecond;
 import ch.grze.frogmentexample.sample.keepingfragmentstate.FragmentCounter;

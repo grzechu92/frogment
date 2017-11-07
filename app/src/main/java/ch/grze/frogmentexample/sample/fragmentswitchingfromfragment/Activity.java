@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import ch.grze.frogment.activity.AbstractFrogmentActivity;
-import ch.grze.frogment.frogment.FrogmentData;
+import ch.grze.frogment.core.navigation.FrogmentData;
 import ch.grze.frogmentexample.R;
 import ch.grze.frogmentexample.sample.commons.FragmentFirstWithButton;
 

@@ -1,13 +1,12 @@
 package ch.grze.frogment.activity
 
 import android.support.annotation.IdRes
-
 import ch.grze.frogment.ActivityInterface
-import ch.grze.frogment.SwitchAware
 import ch.grze.frogment.core.backstack.BackStackChangeListener
-import ch.grze.frogment.frogment.FrogmentData
+import ch.grze.frogment.core.navigation.FrogmentData
+import ch.grze.frogment.core.navigation.NavigatorAware
 
-interface FrogmentActivityInterface : ActivityInterface, BackStackChangeListener, SwitchAware {
+interface FrogmentActivityInterface : ActivityInterface, BackStackChangeListener, NavigatorAware {
     companion object {
         val FROGMENT_DATA = "frogment_data"
     }

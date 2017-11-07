@@ -1,20 +1,19 @@
-package ch.grze.frogment.activity
+package ch.grze.frogment.core.navigation
 
-import android.app.Activity
 import android.os.Parcel
 import android.os.Parcelable
 import ch.grze.frogment.State
-import ch.grze.frogment.frogment.FrogmentData
+import ch.grze.frogment.activity.FrogmentActivityInterface
 
 class FrogmentActivityData
 @JvmOverloads constructor(
-        val clazz: Class<out Activity>,
+        val clazz: Class<out FrogmentActivityInterface>,
         val state: State? = null,
         val frogmentData: FrogmentData? = null
 ) : Parcelable {
     private constructor(builder: Builder) : this(builder.clazz, builder.state, builder.frogmentData)
 
-    class Builder(val clazz: Class<out Activity>) {
+    class Builder(val clazz: Class<out FrogmentActivityInterface>) {
         internal var state: State? = null
         internal var frogmentData: FrogmentData? = null
 
@@ -31,7 +30,7 @@ class FrogmentActivityData
         fun build(): FrogmentActivityData = FrogmentActivityData(this)
     }
 
-    constructor(source: Parcel) : this(source.readSerializable() as Class<out Activity>, source.readParcelable<State>(State::class.java.classLoader), source.readParcelable<FrogmentData>(FrogmentData::class.java.classLoader))
+    constructor(source: Parcel) : this(source.readSerializable() as Class<out FrogmentActivityInterface>, source.readParcelable<State>(State::class.java.classLoader), source.readParcelable<FrogmentData>(FrogmentData::class.java.classLoader))
 
     override fun describeContents() = 0
 
@@ -43,7 +42,7 @@ class FrogmentActivityData
 
     companion object {
         @JvmStatic
-        fun forClass(clazz: Class<out Activity>): FrogmentActivityData = FrogmentActivityData(clazz)
+        fun forClass(clazz: Class<out FrogmentActivityInterface>): FrogmentActivityData = FrogmentActivityData(clazz)
 
         @JvmField
         val CREATOR: Parcelable.Creator<FrogmentActivityData> = object : Parcelable.Creator<FrogmentActivityData> {

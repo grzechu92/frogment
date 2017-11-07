@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ch.grze.frogment.activity.FrogmentActivityData;
+import ch.grze.frogment.core.navigation.FrogmentActivityData;
+import ch.grze.frogment.core.navigation.FrogmentData;
 import ch.grze.frogment.frogment.AbstractFrogment;
-import ch.grze.frogment.frogment.FrogmentData;
 import ch.grze.frogmentexample.R;
 
 public class FragmentFirstWithActivitySwitch extends AbstractFrogment {
@@ -33,6 +33,6 @@ public class FragmentFirstWithActivitySwitch extends AbstractFrogment {
                 .frogmentData(FrogmentData.forClass(FragmentSecondWithActivitySwitch.class))
                 .build();
 
-        getFrogmentActivity().switchActivity(data);
+        getFrogmentActivity().getNavigator().to(data);
     }
 }

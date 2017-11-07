@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.grze.frogment.activity.AbstractFrogmentActivity;
-import ch.grze.frogment.frogment.FrogmentData;
+import ch.grze.frogment.core.navigation.FrogmentData;
 import ch.grze.frogmentexample.R;
 import ch.grze.frogmentexample.sample.commons.FragmentSecond;
 
@@ -21,12 +21,12 @@ public class Activity extends AbstractFrogmentActivity {
 
     @OnClick(R.id.first_fragment)
     public void onFragment1Click() {
-        switchFrogment(FrogmentData.forClass(FragmentCounter.class));
+        getNavigator().to(FrogmentData.forClass(FragmentCounter.class));
     }
 
     @OnClick(R.id.second_fragment)
     public void onFragment2Click() {
-        switchFrogment(FrogmentData.forClass(FragmentSecond.class));
+        getNavigator().to(FrogmentData.forClass(FragmentSecond.class));
     }
 
     @Override

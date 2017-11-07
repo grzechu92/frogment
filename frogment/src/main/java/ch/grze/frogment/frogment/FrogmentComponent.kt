@@ -2,6 +2,7 @@ package ch.grze.frogment.frogment
 
 import ch.grze.frogment.activity.FrogmentActivityInterface
 import ch.grze.frogment.core.Core
+import ch.grze.frogment.core.navigation.FrogmentData
 
 class FrogmentComponent(
         private val core: Core,

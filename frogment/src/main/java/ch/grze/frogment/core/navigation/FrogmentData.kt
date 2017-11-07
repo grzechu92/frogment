@@ -1,8 +1,9 @@
-package ch.grze.frogment.frogment
+package ch.grze.frogment.core.navigation
 
 import android.os.Parcel
 import android.os.Parcelable
 import ch.grze.frogment.State
+import ch.grze.frogment.frogment.FrogmentInterface
 
 class FrogmentData
 @JvmOverloads constructor(

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ch.grze.frogment.activity.AbstractStateAwareFrogmentActivity;
-import ch.grze.frogment.frogment.FrogmentData;
+import ch.grze.frogment.core.navigation.FrogmentData;
 import ch.grze.frogmentexample.R;
 
 public class Activity extends AbstractStateAwareFrogmentActivity<State> {
