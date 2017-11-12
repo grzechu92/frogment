@@ -6,22 +6,24 @@ import ch.grze.frogment.StateAware
 import ch.grze.frogment.ViewStateAware
 import ch.grze.frogment.core.Core
 
-class StateAwareFrogmentComponent<S : State>(
-        private val core: Core,
-        private val stateAwareFrogment: StateAwareFrogmentInterface<S>
-) : StateAware<S>, ViewStateAware {
+class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
+    lateinit var stateAwareFrogment: StateAwareFrogmentInterface<S>
+    lateinit var core: Core
 
     override var isViewReady = false
-    override var state: S? = stateAwareFrogment.defaultState
+    override var state: S? = null
         set(value) {
             field = value
 
-            stateAwareFrogment.onBeforeStateChange(state)
-            stateAwareFrogment.onStateChange(state)
+            //TODO: in Kotlin 1.2 use: if (::stateAwareFrogment.isInitialized)
+            try {
+                stateAwareFrogment.onBeforeStateChange(state)
+                stateAwareFrogment.onStateChange(state)
 
-            if (isViewReady) {
-                stateAwareFrogment.onViewStateChange(state)
-            }
+                if (isViewReady) {
+                    stateAwareFrogment.onViewStateChange(state)
+                }
+            } catch (_: UninitializedPropertyAccessException) {}
         }
 
     override fun onViewReady() {

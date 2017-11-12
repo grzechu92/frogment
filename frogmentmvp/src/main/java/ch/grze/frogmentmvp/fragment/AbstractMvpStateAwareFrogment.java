@@ -13,9 +13,4 @@ public abstract class AbstractMvpStateAwareFrogment<P extends MvpPresenter, S ex
     public StateAwareFrogmentComponent<S> getStateAwareFrogmentComponent() {
         return stateAwareFrogmentComponent;
     }
-
-    @Override
-    public void setStateAwareFrogmentComponent(StateAwareFrogmentComponent<S> component) {
-        stateAwareFrogmentComponent = component;
-    }
 }
