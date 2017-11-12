@@ -6,7 +6,7 @@ import ch.grze.frogment.core.Core
 import ch.grze.frogment.core.extension.AbstractExtension
 import java.util.*
 
-class FrogmentFoundation private constructor(builder: Builder) {
+class Frogment private constructor(builder: Builder) {
     private val core: Core
 
     constructor(application: Application) : this(Builder(application))
@@ -29,6 +29,6 @@ class FrogmentFoundation private constructor(builder: Builder) {
             return this
         }
 
-        fun build(): FrogmentFoundation = FrogmentFoundation(this)
+        fun build(): Frogment = Frogment(this)
     }
 }

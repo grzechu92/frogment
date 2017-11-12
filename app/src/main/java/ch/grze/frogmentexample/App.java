@@ -2,7 +2,7 @@ package ch.grze.frogmentexample;
 
 import android.app.Application;
 
-import ch.grze.frogment.FrogmentFoundation;
+import ch.grze.frogment.Frogment;
 import ch.grze.frogmentmvp.MvpExtension;
 
 public class App extends Application {
@@ -12,7 +12,7 @@ public class App extends Application {
 
         //new FrogmentFoundation(this); //default initializer
 
-        new FrogmentFoundation.Builder(this)
+        new Frogment.Builder(this)
                 .extension(new MvpExtension()) //optional extension
                 .build();
     }
