@@ -6,11 +6,12 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ch.grze.frogment.StateCallbacks;
 import ch.grze.frogment.activity.AbstractStateAwareFrogmentActivity;
 import ch.grze.frogment.core.navigation.FrogmentData;
 import ch.grze.frogmentexample.R;
 
-public class Activity1 extends AbstractStateAwareFrogmentActivity<State> {
+public class Activity1 extends AbstractStateAwareFrogmentActivity<State> implements StateCallbacks.OnViewStateChange<State> {
     @BindView(R.id.state) protected TextView stateView;
     
     @Override

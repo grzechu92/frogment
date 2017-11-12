@@ -10,11 +10,12 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ch.grze.frogment.StateCallbacks;
 import ch.grze.frogment.frogment.AbstractStateAwareFrogment;
 import ch.grze.frogmentexample.R;
 import ch.grze.frogmentexample.sample.commons.FragmentCounterState;
 
-public class FragmentCounter extends AbstractStateAwareFrogment<FragmentCounterState> {
+public class FragmentCounter extends AbstractStateAwareFrogment<FragmentCounterState> implements StateCallbacks.OnViewStateChange<FragmentCounterState> {
     @BindView(R.id.value) protected TextView value;
 
     @Override

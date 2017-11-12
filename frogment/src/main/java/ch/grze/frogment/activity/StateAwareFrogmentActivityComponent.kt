@@ -5,6 +5,7 @@ import android.os.Bundle
 import ch.grze.frogment.ActivityStateProvider
 import ch.grze.frogment.State
 import ch.grze.frogment.StateAware
+import ch.grze.frogment.StateCallbacks.*
 import ch.grze.frogment.ViewStateAware
 import ch.grze.frogment.core.Core
 import ch.grze.frogment.core.backstack.BackStackChangeListener
@@ -20,17 +21,22 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
         set(value) {
             field = value
 
-            stateAwareFrogmentActivity.onBeforeStateChange(state)
-            stateAwareFrogmentActivity.onStateChange(state)
+            state?.let { state ->
+                (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.let { it.onBeforeStateChange(state) }
+                (stateAwareFrogmentActivity as? OnStateChange<S>)?.let { it.onStateChange(state) }
 
-            if (isViewReady) {
-                stateAwareFrogmentActivity.onViewStateChange(state)
+                if (isViewReady) {
+                    (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+                }
             }
         }
 
     override fun onViewReady() {
         isViewReady = true
-        stateAwareFrogmentActivity.onViewStateChange(state)
+
+        state?.let { state ->
+            (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+        }
     }
 
     override fun onFrogmentPushed(frogment: FrogmentInterface) {
@@ -52,8 +58,11 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
     }
 
     fun onActivitySaveInstanceState(outState: Bundle) {
-        stateAwareFrogmentActivity.onBeforeStateSave(state)
-        outState.putParcelable(StateAwareFrogmentActivityInterface.STATE, state)
+        state?.let { state ->
+            (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.let { it.onBeforeStateChange(state) }
+
+            outState.putParcelable(StateAwareFrogmentActivityInterface.STATE, state)
+        }
     }
 
     private fun onFrogmentConfigure(frogment: FrogmentInterface) {

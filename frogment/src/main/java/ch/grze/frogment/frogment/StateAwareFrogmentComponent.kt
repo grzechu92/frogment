@@ -3,6 +3,7 @@ package ch.grze.frogment.frogment
 import android.os.Bundle
 import ch.grze.frogment.State
 import ch.grze.frogment.StateAware
+import ch.grze.frogment.StateCallbacks.*
 import ch.grze.frogment.ViewStateAware
 import ch.grze.frogment.core.Core
 
@@ -17,18 +18,23 @@ class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
 
             //TODO: in Kotlin 1.2 use: if (::stateAwareFrogment.isInitialized)
             try {
-                stateAwareFrogment.onBeforeStateChange(state)
-                stateAwareFrogment.onStateChange(state)
+                state?.let { state ->
+                    (stateAwareFrogment as? OnBeforeStateChange<S>)?.let { it.onBeforeStateChange(state) }
+                    (stateAwareFrogment as? OnStateChange<S>)?.let { it.onStateChange(state) }
 
-                if (isViewReady) {
-                    stateAwareFrogment.onViewStateChange(state)
+                    if (isViewReady) {
+                        (stateAwareFrogment as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+                    }
                 }
             } catch (_: UninitializedPropertyAccessException) {}
         }
 
     override fun onViewReady() {
         isViewReady = true
-        stateAwareFrogment.onViewStateChange(state)
+
+        state?.let { state ->
+            (stateAwareFrogment as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+        }
     }
 
     fun onFragmentPreCreated(bundle: Bundle?) {
@@ -40,8 +46,10 @@ class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
     }
 
     fun onFragmentSaveInstanceState(outState: Bundle) {
-        stateAwareFrogment.onBeforeStateSave(state)
-        outState.putParcelable(StateAwareFrogmentInterface.STATE, state)
+        state?.let { state ->
+            (stateAwareFrogment as? OnBeforeStateSave<S>)?.let { it.onBeforeStateSave(state) }
+            outState.putParcelable(StateAwareFrogmentInterface.STATE, state)
+        }
     }
 
     private fun reloadState(arguments: Bundle?, savedInstanceState: Bundle?) {
