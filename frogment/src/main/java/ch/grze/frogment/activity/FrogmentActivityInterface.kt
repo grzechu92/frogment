@@ -1,7 +1,6 @@
 package ch.grze.frogment.activity
 
 import android.support.annotation.IdRes
-import ch.grze.frogment.ActivityInterface
 import ch.grze.frogment.core.backstack.BackStackChangeListener
 import ch.grze.frogment.core.navigation.FrogmentData
 import ch.grze.frogment.core.navigation.NavigatorAware

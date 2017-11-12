@@ -1,6 +1,6 @@
 package ch.grze.frogmentexample.sample.activitystateprovider;
 
-import ch.grze.frogment.ActivityStateProvider;
+import ch.grze.frogment.activity.ActivityStateProvider;
 import ch.grze.frogmentexample.sample.commons.FragmentFirst;
 
 public class FragmentStateProvider extends FragmentFirst implements ActivityStateProvider<State> {

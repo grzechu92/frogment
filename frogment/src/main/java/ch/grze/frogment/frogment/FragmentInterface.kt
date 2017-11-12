@@ -1,4 +1,4 @@
-package ch.grze.frogment
+package ch.grze.frogment.frogment
 
 import android.app.Activity
 import android.os.Bundle

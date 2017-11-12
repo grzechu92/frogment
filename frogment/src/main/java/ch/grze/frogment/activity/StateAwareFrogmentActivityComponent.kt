@@ -2,7 +2,6 @@ package ch.grze.frogment.activity
 
 import android.content.Intent
 import android.os.Bundle
-import ch.grze.frogment.ActivityStateProvider
 import ch.grze.frogment.State
 import ch.grze.frogment.StateAware
 import ch.grze.frogment.StateCallbacks.*
