@@ -17,7 +17,7 @@ abstract class AbstractActivityLifecycleCallbacks(protected val core: Core) : Ap
 
     override fun onActivityStopped(activity: Activity) {}
 
-    override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 
     override fun onActivityDestroyed(activity: Activity) {}
 }

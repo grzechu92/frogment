@@ -46,9 +46,9 @@ class Navigator constructor(
 
     private fun getFrogmentFrom(data: FrogmentData): FrogmentInterface {
         val fragmentByTag = activity.getSupportFragmentManager().findFragmentByTag(data.tag)
-        val fragmentInstanceProvider: FragmentInstanceProvider = core.config.fragmentInstanceProvider
+        val provider: FragmentInstanceProvider = core.config.fragmentInstanceProvider
 
-        val frogment: FrogmentInterface = (fragmentByTag ?: fragmentInstanceProvider.getInstance(data.clazz)) as FrogmentInterface
+        val frogment: FrogmentInterface = (fragmentByTag ?: provider.getInstance(data.clazz)) as FrogmentInterface
 
         core.injectComponents(frogment as Fragment)
 
