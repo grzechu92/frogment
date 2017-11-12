@@ -13,9 +13,4 @@ public abstract class AbstractMvpStateAwareFrogmentActivity<P extends MvpPresent
     public StateAwareFrogmentActivityComponent<S> getStateAwareFrogmentActivityComponent() {
         return stateAwareFrogmentActivityComponent;
     }
-
-    @Override
-    public void setStateAwareFrogmentActivityComponent(StateAwareFrogmentActivityComponent<S> component) {
-        stateAwareFrogmentActivityComponent = component;
-    }
 }

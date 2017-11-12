@@ -5,5 +5,7 @@ import android.os.Bundle
 
 interface FragmentInterface {
     val activity: Activity
-    var arguments: Bundle
+
+    fun getArguments(): Bundle?
+    fun setArguments(arguments: Bundle?)
 }

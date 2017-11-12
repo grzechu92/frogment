@@ -10,5 +10,5 @@ interface StateAwareFrogmentActivityInterface<S : State> : FrogmentActivityInter
         val STATE = "state"
     }
 
-    var stateAwareFrogmentActivityComponent: StateAwareFrogmentActivityComponent<S>
+    val stateAwareFrogmentActivityComponent: StateAwareFrogmentActivityComponent<S>
 }

@@ -30,7 +30,7 @@ class StateAwareFrogmentComponent<S : State>(
     }
 
     fun onFragmentPreCreated(bundle: Bundle?) {
-        reloadState(stateAwareFrogment.arguments, bundle)
+        reloadState(stateAwareFrogment.getArguments(), bundle)
     }
 
     fun onFragmentActivityCreated(bundle: Bundle?) {
@@ -42,7 +42,7 @@ class StateAwareFrogmentComponent<S : State>(
         outState.putParcelable(StateAwareFrogmentInterface.STATE, state)
     }
 
-    private fun reloadState(arguments: Bundle, savedInstanceState: Bundle?) {
+    private fun reloadState(arguments: Bundle?, savedInstanceState: Bundle?) {
         this.state = core.parser.getData(StateAwareFrogmentInterface.STATE, stateAwareFrogment.defaultState, arguments, savedInstanceState)
     }
 }

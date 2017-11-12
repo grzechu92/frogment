@@ -11,7 +11,7 @@ interface FrogmentActivityInterface : ActivityInterface, BackStackChangeListener
         val FROGMENT_DATA = "frogment_data"
     }
 
-    var frogmentActivityComponent: FrogmentActivityComponent
+    val frogmentActivityComponent: FrogmentActivityComponent
 
     @get:IdRes
     val frogmentContainerId: Int

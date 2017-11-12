@@ -12,9 +12,4 @@ public abstract class AbstractMvpFrogmentActivity<P extends MvpPresenter> extend
     public FrogmentActivityComponent getFrogmentActivityComponent() {
         return frogmentActivityComponent;
     }
-
-    @Override
-    public void setFrogmentActivityComponent(FrogmentActivityComponent component) {
-        frogmentActivityComponent = component;
-    }
 }

@@ -58,7 +58,7 @@ class FrogmentActivityComponent : NavigatorAware, BackStackChangeListener {
             val bundle = Bundle()
             bundle.putParcelable(StateAwareFrogmentInterface.STATE, frogmentData?.state ?: frogment.data?.state ?: frogment.defaultState)
 
-            frogment.arguments = bundle
+            frogment.setArguments(bundle)
         }
     }
 }
