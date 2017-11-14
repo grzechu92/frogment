@@ -19,11 +19,11 @@ class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
             //TODO: in Kotlin 1.2 use: if (::stateAwareFrogment.isInitialized)
             try {
                 state?.let { state ->
-                    (stateAwareFrogment as? OnBeforeStateChange<S>)?.let { it.onBeforeStateChange(state) }
-                    (stateAwareFrogment as? OnStateChange<S>)?.let { it.onStateChange(state) }
+                    (stateAwareFrogment as? OnBeforeStateChange<S>)?.onBeforeStateChange(state)
+                    (stateAwareFrogment as? OnStateChange<S>)?.onStateChange(state)
 
                     if (isViewReady) {
-                        (stateAwareFrogment as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+                        (stateAwareFrogment as? OnViewStateChange<S>)?.onViewStateChange(state)
                     }
                 }
             } catch (_: UninitializedPropertyAccessException) {}
@@ -33,7 +33,7 @@ class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
         isViewReady = true
 
         state?.let { state ->
-            (stateAwareFrogment as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+            (stateAwareFrogment as? OnViewStateChange<S>)?.onViewStateChange(state)
         }
     }
 
@@ -47,7 +47,7 @@ class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
 
     fun onFragmentSaveInstanceState(outState: Bundle) {
         state?.let { state ->
-            (stateAwareFrogment as? OnBeforeStateSave<S>)?.let { it.onBeforeStateSave(state) }
+            (stateAwareFrogment as? OnBeforeStateSave<S>)?.onBeforeStateSave(state)
             outState.putParcelable(StateAwareFrogmentInterface.STATE, state)
         }
     }

@@ -1,8 +1,8 @@
 package ch.grze.frogment
 
-import ch.grze.frogment.StateCallbacks.*
+interface StateCallbacks {
+    interface All<in S : State> : OnBeforeStateSave<S>, OnBeforeStateChange<S>, OnStateChange<S>, OnViewStateChange<S>
 
-interface StateCallbacks<in S : State> : OnBeforeStateSave<S>, OnBeforeStateChange<S>, OnStateChange<S>, OnViewStateChange<S> {
     interface OnBeforeStateSave<in S : State> {
         fun onBeforeStateSave(state: S)
     }

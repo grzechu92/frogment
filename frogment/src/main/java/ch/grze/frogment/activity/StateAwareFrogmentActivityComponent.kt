@@ -21,11 +21,11 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
             field = value
 
             state?.let { state ->
-                (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.let { it.onBeforeStateChange(state) }
-                (stateAwareFrogmentActivity as? OnStateChange<S>)?.let { it.onStateChange(state) }
+                (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.onBeforeStateChange(state)
+                (stateAwareFrogmentActivity as? OnStateChange<S>)?.onStateChange(state)
 
                 if (isViewReady) {
-                    (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+                    (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.onViewStateChange(state)
                 }
             }
         }
@@ -34,7 +34,7 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
         isViewReady = true
 
         state?.let { state ->
-            (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.let { it.onViewStateChange(state) }
+            (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.onViewStateChange(state)
         }
     }
 
@@ -58,7 +58,7 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
 
     fun onActivitySaveInstanceState(outState: Bundle) {
         state?.let { state ->
-            (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.let { it.onBeforeStateChange(state) }
+            (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.onBeforeStateChange(state)
 
             outState.putParcelable(StateAwareFrogmentActivityInterface.STATE, state)
         }
