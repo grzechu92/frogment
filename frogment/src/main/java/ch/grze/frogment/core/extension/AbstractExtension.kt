@@ -10,30 +10,15 @@ import ch.grze.frogment.core.component.ComponentInjector
 import java.util.*
 
 abstract class AbstractExtension {
+    protected lateinit var core: Core
+
     val activityLifecycleCallbacks = ArrayList<Application.ActivityLifecycleCallbacks>()
     val fragmentLifecycleCallbacks = ArrayList<FragmentManager.FragmentLifecycleCallbacks>()
     val activityComponentInjectors = ArrayList<ComponentInjector<Activity>>()
     val fragmentComponentInjectors = ArrayList<ComponentInjector<Fragment>>()
-    protected lateinit var core: Core
 
     @CallSuper
     open fun initialize(core: Core) {
         this.core = core
-    }
-
-    protected fun addActivityLifecycleCallback(callback: Application.ActivityLifecycleCallbacks) {
-        activityLifecycleCallbacks.add(callback)
-    }
-
-    protected fun addFragmentLifecycleCallback(callback: FragmentManager.FragmentLifecycleCallbacks) {
-        fragmentLifecycleCallbacks.add(callback)
-    }
-
-    protected fun addActivityComponentInjector(injector: ComponentInjector<Activity>) {
-        activityComponentInjectors.add(injector)
-    }
-
-    protected fun addFragmentComponentInjector(injector: ComponentInjector<Fragment>) {
-        fragmentComponentInjectors.add(injector)
     }
 }

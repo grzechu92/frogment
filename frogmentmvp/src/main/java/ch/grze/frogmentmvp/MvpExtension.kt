@@ -9,7 +9,7 @@ class MvpExtension : AbstractExtension() {
     override fun initialize(core: Core) {
         super.initialize(core)
 
-        addActivityComponentInjector(ActivityComponentInjector())
-        addFragmentComponentInjector(FragmentComponentInjector())
+        activityComponentInjectors.add(ActivityComponentInjector())
+        fragmentComponentInjectors.add(FragmentComponentInjector())
     }
 }
