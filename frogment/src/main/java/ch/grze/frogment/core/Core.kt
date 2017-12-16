@@ -13,13 +13,19 @@ import ch.grze.frogment.core.parser.Parser
 import ch.grze.frogment.frogment.FragmentCallbacks
 import ch.grze.frogment.frogment.FrogmentComponentInjector
 import java.util.*
+import kotlin.collections.HashMap
 
-class Core(application: Application, val config: Config, extensions: List<AbstractExtension>) {
+class Core(
+        application: Application,
+        val config: Config,
+        extensions: List<AbstractExtension>
+) {
     private val activityComponentInjectors = ArrayList<ComponentInjector<Activity>>()
     private val fragmentComponentInjectors = ArrayList<ComponentInjector<Fragment>>()
+    private val extensions = HashMap<String, AbstractExtension>()
+
     val fragmentLifecycleCallbacks = ArrayList<FragmentManager.FragmentLifecycleCallbacks>()
     val activityLifecycleCallbacks = ArrayList<Application.ActivityLifecycleCallbacks>()
-
     val parser = Parser()
 
     init {
@@ -44,6 +50,8 @@ class Core(application: Application, val config: Config, extensions: List<Abstra
         }
     }
 
+    fun <T : AbstractExtension> getExtension(id: String): T? = extensions[id] as? T
+
     private fun initializeInjectors() {
         activityComponentInjectors.add(ActivityComponentInjector())
         fragmentComponentInjectors.add(FrogmentComponentInjector())
@@ -57,6 +65,10 @@ class Core(application: Application, val config: Config, extensions: List<Abstra
     }
 
     private fun initializeExtensions(extensions: List<AbstractExtension>) {
+        for (extension in extensions) {
+            this.extensions[extension.ID] = extension
+        }
+
         for (extension in extensions) {
             extension.initialize(this)
 

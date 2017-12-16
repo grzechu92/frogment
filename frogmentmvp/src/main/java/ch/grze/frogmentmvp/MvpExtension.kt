@@ -6,6 +6,8 @@ import ch.grze.frogmentmvp.view.ActivityComponentInjector
 import ch.grze.frogmentmvp.view.FragmentComponentInjector
 
 class MvpExtension : AbstractExtension() {
+    override val ID: String = "MVP_EXTENSION"
+
     override fun initialize(core: Core) {
         super.initialize(core)
 
