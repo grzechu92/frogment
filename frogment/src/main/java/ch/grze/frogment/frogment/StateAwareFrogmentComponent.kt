@@ -16,8 +16,7 @@ class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
         set(value) {
             field = value
 
-            //TODO: in Kotlin 1.2 use: if (::stateAwareFrogment.isInitialized)
-            try {
+            if (this::stateAwareFrogment.isInitialized) {
                 state?.let { state ->
                     (stateAwareFrogment as? OnBeforeStateChange<S>)?.onBeforeStateChange(state)
                     (stateAwareFrogment as? OnStateChange<S>)?.onStateChange(state)
@@ -26,7 +25,7 @@ class StateAwareFrogmentComponent<S : State>: StateAware<S>, ViewStateAware {
                         (stateAwareFrogment as? OnViewStateChange<S>)?.onViewStateChange(state)
                     }
                 }
-            } catch (_: UninitializedPropertyAccessException) {}
+            }
         }
 
     override fun onViewReady() {
