@@ -6,8 +6,8 @@ import ch.grze.frogment.core.component.ComponentInjector
 
 class ActivityComponentInjector : ComponentInjector<Activity> {
     override fun inject(core: Core, activity: Activity) {
-        if (activity is PresenterAwareMvpView<*>) {
-            activity.mvpPresenterComponent = MvpPresenterComponent()
-        }
+//        if (activity is PresenterAwareMvpView<*>) {
+//            activity.mvpPresenterComponent = MvpPresenterComponent()
+//        }
     }
 }

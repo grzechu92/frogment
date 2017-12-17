@@ -11,11 +11,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.grze.frogmentexample.R;
+import ch.grze.frogmentmvp.Mvp;
 import ch.grze.frogmentmvp.fragment.AbstractMvpFrogment;
 
-public class Fragment extends AbstractMvpFrogment<PresenterInterface> implements ViewInterface {
-    private PresenterInterface presenter = new Presenter();
-
+public class Fragment extends AbstractMvpFrogment<Contract.Presenter> implements Contract.View {
     @BindView(R.id.status) protected TextView statusView;
 
     @Override
@@ -28,7 +27,8 @@ public class Fragment extends AbstractMvpFrogment<PresenterInterface> implements
         super.onViewCreated(view, savedInstanceState);
 
         ButterKnife.bind(this, view);
-        attachPresenter(presenter);
+        setPresenter(new Presenter());
+        getPresenter().onAttach(this);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class Fragment extends AbstractMvpFrogment<PresenterInterface> implements
     
     @OnClick(R.id.button)
     protected void onButtonClicked() {
-        presenter.onButtonClicked();
+        getPresenter().onButtonClicked();
     }
 }

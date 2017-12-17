@@ -6,8 +6,8 @@ import ch.grze.frogment.core.component.ComponentInjector
 
 class FragmentComponentInjector : ComponentInjector<Fragment> {
     override fun inject(core: Core, fragment: Fragment) {
-        if (fragment is PresenterAwareMvpView<*>) {
-            fragment.mvpPresenterComponent = MvpPresenterComponent()
-        }
+//        if (fragment is PresenterAwareMvpView<*>) {
+//            fragment.mvpPresenterComponent = MvpPresenterComponent()
+//        }
     }
 }

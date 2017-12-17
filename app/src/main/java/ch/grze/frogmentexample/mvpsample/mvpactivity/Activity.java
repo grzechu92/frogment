@@ -10,9 +10,7 @@ import butterknife.OnClick;
 import ch.grze.frogmentexample.R;
 import ch.grze.frogmentmvp.activity.AbstractMvpActivity;
 
-public class Activity extends AbstractMvpActivity<PresenterInterface> implements ViewInterface {
-    private PresenterInterface presenter = new Presenter(); //inject Presenter instance using DI
-
+public class Activity extends AbstractMvpActivity<Contract.Presenter> implements Contract.View {
     @BindView(R.id.status) protected TextView statusView;
 
     @Override
@@ -22,7 +20,8 @@ public class Activity extends AbstractMvpActivity<PresenterInterface> implements
 
         ButterKnife.bind(this);
 
-        attachPresenter(presenter);
+        setPresenter(new Presenter());
+        getPresenter().onAttach(this);
     }
 
     @Override
