@@ -1,4 +1,4 @@
-package ch.grze.frogmentmvp.activity
+package ch.grze.frogmentmvp.view
 
 import android.support.v7.app.AppCompatActivity
 import ch.grze.frogmentmvp.Mvp

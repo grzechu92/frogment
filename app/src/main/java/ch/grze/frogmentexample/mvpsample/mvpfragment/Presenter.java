@@ -5,9 +5,7 @@ import ch.grze.frogmentmvp.presenter.AbstractMvpPresenter;
 public class Presenter extends AbstractMvpPresenter<Contract.View> implements Contract.Presenter {
     @Override
     public void onAttach(Contract.View view) {
-        setView(view);
-
-        getView().setStatus("Not clicked!");
+        view.setStatus("Not clicked!");
     }
 
     @Override

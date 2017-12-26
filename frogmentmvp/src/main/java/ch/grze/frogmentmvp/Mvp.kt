@@ -1,17 +1,18 @@
 package ch.grze.frogmentmvp
 
-interface Mvp {
-    interface Presenter<V: _ComponentView> : _ComponentPresenter {
-        var view: V?
+import ch.grze.frogmentmvp.presenter.ViewAware
+import ch.grze.frogmentmvp.view.PresenterAware
 
+interface Mvp {
+    interface _Component {
+        interface Presenter
+        interface View
+    }
+
+    interface Presenter<V: _Component.View> : _Component.Presenter, ViewAware<V> {
         fun onAttach(view: V)
         fun onDetach()
     }
 
-    interface View<P : _ComponentPresenter> : _ComponentView {
-        var presenter: P?
-    }
-
-    interface _ComponentPresenter
-    interface _ComponentView
+    interface View<P : _Component.Presenter> : _Component.View, PresenterAware<P>
 }

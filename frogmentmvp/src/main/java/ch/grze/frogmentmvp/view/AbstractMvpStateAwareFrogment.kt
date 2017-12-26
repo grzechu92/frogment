@@ -1,4 +1,4 @@
-package ch.grze.frogmentmvp.fragment
+package ch.grze.frogmentmvp.view
 
 import ch.grze.frogment.State
 import ch.grze.frogment.frogment.AbstractStateAwareFrogment

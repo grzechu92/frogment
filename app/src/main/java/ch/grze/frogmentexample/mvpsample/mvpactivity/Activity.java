@@ -8,7 +8,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ch.grze.frogmentexample.R;
-import ch.grze.frogmentmvp.activity.AbstractMvpActivity;
+import ch.grze.frogmentmvp.view.AbstractMvpActivity;
 
 public class Activity extends AbstractMvpActivity<Contract.Presenter> implements Contract.View {
     @BindView(R.id.status) protected TextView statusView;
@@ -21,7 +21,14 @@ public class Activity extends AbstractMvpActivity<Contract.Presenter> implements
         ButterKnife.bind(this);
 
         setPresenter(new Presenter());
-        getPresenter().onAttach(this);
+        getPresenter().setView(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        getPresenter().setView(null);
     }
 
     @Override
