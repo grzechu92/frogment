@@ -8,8 +8,8 @@ abstract class AbstractStateAwareFrogmentActivity<S : State> private constructor
         AbstractFrogmentActivity(),
         StateAwareFrogmentActivityInterface<S>,
         BackStackChangeListener by stateAwareFrogmentActivityComponent,
-        StateAware<S> by stateAwareFrogmentActivityComponent
-{
+        StateAware<S> by stateAwareFrogmentActivityComponent {
+
     constructor() : this(StateAwareFrogmentActivityComponent<S>())
 
     init {

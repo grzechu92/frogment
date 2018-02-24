@@ -3,27 +3,27 @@ package ch.grze.frogment.core.navigation
 import android.app.Activity
 import android.content.Intent
 import android.support.v4.app.Fragment
+import android.text.TextUtils.replace
 import ch.grze.frogment.activity.FrogmentActivityInterface
 import ch.grze.frogment.activity.StateAwareFrogmentActivityInterface
 import ch.grze.frogment.core.Core
 import ch.grze.frogment.core.provider.FragmentInstanceProvider
 import ch.grze.frogment.frogment.FrogmentInterface
 
-class Navigator constructor(
-        private val activity: FrogmentActivityInterface,
-        private val core: Core
-) {
+class Navigator constructor(private val activity: FrogmentActivityInterface,
+                            private val core: Core) {
+
     fun to(data: FrogmentData) {
         val frogment = getFrogmentFrom(data)
         frogment.data = data
 
         activity.frogmentActivityComponent.onFrogmentConfigure(frogment)
 
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .replace(activity.frogmentContainerId, frogment as Fragment, data.tag)
-                .addToBackStack(data.tag)
-                .commit()
+        activity.getSupportFragmentManager().beginTransaction().apply {
+            replace(activity.frogmentContainerId, frogment as Fragment, data.tag)
+            addToBackStack(data.tag)
+            commit()
+        }
     }
 
     fun to(data: FrogmentActivityData) {

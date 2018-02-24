@@ -8,8 +8,8 @@ abstract class AbstractFrogmentActivity private constructor(override val frogmen
         AppCompatActivity(),
         FrogmentActivityInterface,
         NavigatorAware by frogmentActivityComponent,
-        BackStackChangeListener by frogmentActivityComponent
-{
+        BackStackChangeListener by frogmentActivityComponent {
+
     constructor() : this(FrogmentActivityComponent())
 
     init {

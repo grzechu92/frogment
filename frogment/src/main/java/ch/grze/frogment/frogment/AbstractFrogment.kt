@@ -8,8 +8,8 @@ abstract class AbstractFrogment private constructor(override val frogmentCompone
         FrogmentInterface,
         FrogmentDataAware by frogmentComponent,
         FrogmentActivityAware by frogmentComponent,
-        NavigatorAware by frogmentComponent
-{
+        NavigatorAware by frogmentComponent {
+
     constructor() : this(FrogmentComponent())
 
     init {

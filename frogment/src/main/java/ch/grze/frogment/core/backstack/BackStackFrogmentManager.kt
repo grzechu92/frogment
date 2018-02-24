@@ -5,10 +5,8 @@ import android.support.v4.app.FragmentManager
 import ch.grze.frogment.frogment.FrogmentInterface
 
 
-class BackStackFrogmentManager(
-        private val fragmentManager: FragmentManager,
-        private val listener: BackStackChangeListener
-) : FragmentManager.OnBackStackChangedListener {
+class BackStackFrogmentManager(private val fragmentManager: FragmentManager,
+                               private val listener: BackStackChangeListener) : FragmentManager.OnBackStackChangedListener {
 
     private var lastBackStackEntryCount: Int = 0
 
@@ -23,18 +21,15 @@ class BackStackFrogmentManager(
         val fragments = fragmentManager.fragments
 
         if (hasFragments(fragments)) {
-            val frogment = getParentFrogment(fragments)
-
-            if (frogment != null) {
+            getParentFrogment(fragments)?.let {
                 if (wasPushed(backStackEntryCount)) {
-                    listener.onFrogmentPushed(frogment)
+                    listener.onFrogmentPushed(it)
                 }
 
                 if (wasPopped(backStackEntryCount)) {
-                    listener.onFrogmentPopped(frogment)
+                    listener.onFrogmentPopped(it)
                 }
             }
-
         } else {
             listener.onBackStackEmpty()
         }
@@ -42,19 +37,12 @@ class BackStackFrogmentManager(
         lastBackStackEntryCount = backStackEntryCount
     }
 
-    private fun wasPushed(backStackEntryCount: Int): Boolean {
-        return lastBackStackEntryCount < backStackEntryCount
-    }
+    private fun wasPushed(backStackEntryCount: Int) = lastBackStackEntryCount < backStackEntryCount
 
-    private fun wasPopped(backStackEntryCount: Int): Boolean {
-        return lastBackStackEntryCount > backStackEntryCount
-    }
+    private fun wasPopped(backStackEntryCount: Int) = lastBackStackEntryCount > backStackEntryCount
 
-    private fun hasFragments(fragments: List<Fragment>?): Boolean {
-        return !(fragments?.isEmpty() ?: true)
-    }
+    private fun hasFragments(fragments: List<Fragment>?) = fragments?.isEmpty()?.not() ?: false
 
-    private fun getParentFrogment(fragments: List<Fragment>): FrogmentInterface? {
-        return fragments[Math.max(0, fragments.size - 2)] as FrogmentInterface
-    }
+    private fun getParentFrogment(fragments: List<Fragment>) =
+        fragments[Math.max(0, fragments.size - 2)] as? FrogmentInterface
 }

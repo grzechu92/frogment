@@ -20,12 +20,12 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
         set(value) {
             field = value
 
-            state?.let { state ->
-                (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.onBeforeStateChange(state)
-                (stateAwareFrogmentActivity as? OnStateChange<S>)?.onStateChange(state)
+            state?.let {
+                (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.onBeforeStateChange(it)
+                (stateAwareFrogmentActivity as? OnStateChange<S>)?.onStateChange(it)
 
                 if (isViewReady) {
-                    (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.onViewStateChange(state)
+                    (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.onViewStateChange(it)
                 }
             }
         }
@@ -33,8 +33,8 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
     override fun onViewReady() {
         isViewReady = true
 
-        state?.let { state ->
-            (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.onViewStateChange(state)
+        state?.let {
+            (stateAwareFrogmentActivity as? OnViewStateChange<S>)?.onViewStateChange(it)
         }
     }
 
@@ -57,16 +57,16 @@ class StateAwareFrogmentActivityComponent<S : State> : StateAware<S>, ViewStateA
     }
 
     fun onActivitySaveInstanceState(outState: Bundle) {
-        state?.let { state ->
-            (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.onBeforeStateChange(state)
+        state?.let {
+            (stateAwareFrogmentActivity as? OnBeforeStateChange<S>)?.onBeforeStateChange(it)
 
-            outState.putParcelable(StateAwareFrogmentActivityInterface.STATE, state)
+            outState.putParcelable(StateAwareFrogmentActivityInterface.STATE, it)
         }
     }
 
     private fun onFrogmentConfigure(frogment: FrogmentInterface) {
-        if (frogment is ActivityStateProvider<*>) {
-            state = frogment.frogmentActivityState as S
+        (frogment as? ActivityStateProvider<*>)?.let {
+            state = it.frogmentActivityState as S
         }
     }
 

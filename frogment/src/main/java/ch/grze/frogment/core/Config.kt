@@ -5,7 +5,7 @@ import ch.grze.frogment.core.provider.ReflectionFragmentInstanceProvider
 
 class Config private constructor(builder: Builder) {
     companion object {
-        @JvmStatic fun getDefault(): Config = Config.Builder().build()
+        @JvmStatic fun getDefault() = Config.Builder().build()
     }
 
     val fragmentInstanceProvider: FragmentInstanceProvider

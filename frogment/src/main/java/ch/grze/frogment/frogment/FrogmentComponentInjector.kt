@@ -6,12 +6,7 @@ import ch.grze.frogment.core.component.ComponentInjector
 
 class FrogmentComponentInjector : ComponentInjector<Fragment> {
     override fun inject(core: Core, fragment: Fragment) {
-        if (fragment is FrogmentInterface) {
-            fragment.frogmentComponent.core = core
-        }
-
-        if (fragment is StateAwareFrogmentInterface<*>) {
-            fragment.stateAwareFrogmentComponent.core = core
-        }
+        (fragment as? FrogmentInterface)?.frogmentComponent?.core = core
+        (fragment as? StateAwareFrogmentInterface<*>)?.stateAwareFrogmentComponent?.core = core
     }
 }

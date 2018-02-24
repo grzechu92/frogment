@@ -15,11 +15,10 @@ import ch.grze.frogment.frogment.FrogmentComponentInjector
 import java.util.*
 import kotlin.collections.HashMap
 
-class Core(
-        application: Application,
-        val config: Config,
-        extensions: List<AbstractExtension>
-) {
+class Core(application: Application,
+           val config: Config,
+           extensions: List<AbstractExtension>) {
+
     private val activityComponentInjectors = ArrayList<ComponentInjector<Activity>>()
     private val fragmentComponentInjectors = ArrayList<ComponentInjector<Fragment>>()
     private val extensions = HashMap<String, AbstractExtension>()
@@ -33,20 +32,20 @@ class Core(
         initializeInjectors()
         initializeExtensions(extensions)
 
-        for (callback in activityLifecycleCallbacks) {
-            application.registerActivityLifecycleCallbacks(callback)
+        activityLifecycleCallbacks.forEach {
+            application.registerActivityLifecycleCallbacks(it)
         }
     }
 
     fun injectComponents(activity: Activity) {
-        for (injector in activityComponentInjectors) {
-            injector.inject(this, activity)
+        activityComponentInjectors.forEach {
+            it.inject(this, activity)
         }
     }
 
     fun injectComponents(fragment: Fragment) {
-        for (injector in fragmentComponentInjectors) {
-            injector.inject(this, fragment)
+        fragmentComponentInjectors.forEach {
+            it.inject(this, fragment)
         }
     }
 
@@ -65,17 +64,17 @@ class Core(
     }
 
     private fun initializeExtensions(extensions: List<AbstractExtension>) {
-        for (extension in extensions) {
-            this.extensions[extension.ID] = extension
+        extensions.forEach {
+            this.extensions[it.id] = it
         }
 
-        for (extension in extensions) {
-            extension.initialize(this)
+        extensions.forEach {
+            it.initialize(this)
 
-            activityLifecycleCallbacks.addAll(extension.activityLifecycleCallbacks)
-            fragmentLifecycleCallbacks.addAll(extension.fragmentLifecycleCallbacks)
-            activityComponentInjectors.addAll(extension.activityComponentInjectors)
-            fragmentComponentInjectors.addAll(extension.fragmentComponentInjectors)
+            activityLifecycleCallbacks.addAll(it.activityLifecycleCallbacks)
+            fragmentLifecycleCallbacks.addAll(it.fragmentLifecycleCallbacks)
+            activityComponentInjectors.addAll(it.activityComponentInjectors)
+            fragmentComponentInjectors.addAll(it.fragmentComponentInjectors)
         }
     }
 }

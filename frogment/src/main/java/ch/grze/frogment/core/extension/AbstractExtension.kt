@@ -17,7 +17,7 @@ abstract class AbstractExtension {
     val activityComponentInjectors = ArrayList<ComponentInjector<Activity>>()
     val fragmentComponentInjectors = ArrayList<ComponentInjector<Fragment>>()
 
-    abstract val ID: String
+    abstract val id: String
 
     @CallSuper
     open fun initialize(core: Core) {

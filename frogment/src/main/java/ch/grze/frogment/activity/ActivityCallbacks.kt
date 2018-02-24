@@ -9,32 +9,32 @@ class ActivityCallbacks(core: Core) : AbstractActivityLifecycleCallbacks(core) {
     override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
         super.onActivityCreated(activity, bundle)
 
-        if (activity is FrogmentActivityInterface) {
-            activity.frogmentActivityComponent.onActivityCreated(bundle)
-        }
+        (activity as? FrogmentActivityInterface)
+            ?.frogmentActivityComponent
+            ?.onActivityCreated(bundle)
 
-        if (activity is StateAwareFrogmentActivityInterface<*>) {
-            activity.stateAwareFrogmentActivityComponent.onActivityCreated(bundle)
-        }
+        (activity as? StateAwareFrogmentActivityInterface<*>)
+            ?.stateAwareFrogmentActivityComponent
+            ?.onActivityCreated(bundle)
     }
 
     override fun onActivityStarted(activity: Activity) {
         super.onActivityStarted(activity)
 
-        if (activity is StateAwareFrogmentActivityInterface<*>) {
-            activity.stateAwareFrogmentActivityComponent.onActivityStarted()
-        }
+        (activity as? StateAwareFrogmentActivityInterface<*>)
+            ?.stateAwareFrogmentActivityComponent
+            ?.onActivityStarted()
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
         super.onActivitySaveInstanceState(activity, outState)
 
-        if (activity is FrogmentActivityInterface) {
-            activity.frogmentActivityComponent.onActivitySaveInstanceState(outState)
-        }
+        (activity as? FrogmentActivityInterface)
+            ?.frogmentActivityComponent
+            ?.onActivitySaveInstanceState(outState)
 
-        if (activity is StateAwareFrogmentActivityInterface<*>) {
-            activity.stateAwareFrogmentActivityComponent.onActivitySaveInstanceState(outState)
-        }
+        (activity as? StateAwareFrogmentActivityInterface<*>)
+            ?.stateAwareFrogmentActivityComponent
+            ?.onActivitySaveInstanceState(outState)
     }
 }

@@ -44,8 +44,8 @@ class FrogmentActivityComponent : NavigatorAware, BackStackChangeListener {
         val frogmentData = core.parser.getData(FrogmentActivityInterface.FROGMENT_DATA, defaultFrogmentData, savedInstanceState, intent)
         navigator.to(frogmentData)
 
-        for (callback in core.fragmentLifecycleCallbacks) {
-            fragmentManager.registerFragmentLifecycleCallbacks(callback, true)
+        core.fragmentLifecycleCallbacks.forEach {
+            fragmentManager.registerFragmentLifecycleCallbacks(it, true)
         }
     }
 
@@ -54,11 +54,11 @@ class FrogmentActivityComponent : NavigatorAware, BackStackChangeListener {
     }
 
     fun onFrogmentConfigure(frogment: FrogmentInterface) {
-        if (frogment is StateAwareFrogmentInterface<*>) {
-            val bundle = Bundle()
-            bundle.putParcelable(StateAwareFrogmentInterface.STATE, frogmentData?.state ?: frogment.data.state ?: frogment.defaultState)
-
-            frogment.setArguments(bundle)
+        (frogment as? StateAwareFrogmentInterface<*>)?.let {
+            Bundle().apply {
+                putParcelable(StateAwareFrogmentInterface.STATE, frogmentData?.state ?: frogment.data.state ?: frogment.defaultState)
+                it.setArguments(this)
+            }
         }
     }
 }
